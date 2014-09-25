@@ -1,0 +1,14 @@
+
+DROP DATABASE IF EXISTS lindyfiles;
+
+CREATE DATABASE lindyfiles;
+
+CREATE TABLE users (
+    username    VARCHAR(100),
+    password    VARCHAR(100),
+    fname       VARCHAR(100),
+    email       VARCHAR(200),
+    picture     VARCHAR(100),
+    leader      BOOLEAN,
+    follower    BOOLEAN
+);
