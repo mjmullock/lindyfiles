@@ -1,10 +1,14 @@
 #!/usr/bin/python
 
-import os
+#import os
 import cgi
 import cgitb
+
+cgitb.enable()
+
+import os
 import sqlite3
-#import Cookie
+import Cookie
 
 exit(0)
 
