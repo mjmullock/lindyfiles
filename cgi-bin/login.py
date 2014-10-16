@@ -1,16 +1,8 @@
 #!/usr/bin/python
 
-#import os
 import cgi
 import cgitb
-
-cgitb.enable()
-
-import os
 import sqlite3
-import Cookie
-
-exit(0)
 
 def build_html_page(content_line, cookie=None):
 	s = ''
