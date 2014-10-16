@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import os
 import cgi
 import cgitb
 import sqlite3
@@ -15,6 +16,8 @@ def build_html_page(content_line):
 	return s
 
 cgitb.enable()
+
+import Cookie
 
 form = cgi.FieldStorage()
 name = form["name"].value
