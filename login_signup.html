@@ -5,7 +5,7 @@
 <html> 
 <body>
     <h1>If this is your first time on the site please sign up with your name and password</h1>
-    <FORM METHOD=GET ACTION="/cgi-bin/login.py">
+    <FORM METHOD=GET ACTION="cgi-bin/login.py">
         name: <input name="name" size=10 maxlength=15>
 	password: <input name="password" size=10 maxlength=15>
 	<input type="hidden" name="signup_type" value="register">
@@ -13,7 +13,7 @@
         <INPUT TYPE=submit value="sign up">
     </FORM>
     <h1>If you have already created an account please log in</h1>
-    <FORM METHOD=GET ACTION="/cgi-bin/login.py"> 
+    <FORM METHOD=GET ACTION="cgi-bin/login.py"> 
 	name: <input name="name" size=10 maxlength=15>
 	password: <input name="password" size=10 maxlength=15>
 	<input type="hidden" name="signup_type" value="login">
