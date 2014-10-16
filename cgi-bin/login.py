@@ -3,6 +3,8 @@
 import cgi
 import cgitb
 import sqlite3
+import os
+import Cookie
 
 def build_html_page(content_line, cookie=None):
 	s = ''
