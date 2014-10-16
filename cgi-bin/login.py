@@ -7,8 +7,8 @@ import sqlite3
 def build_html_page(content_line, cookie=None):
 	s = ''
 	s += ("Content-Type: text/html\n")
-    if cookie is not None:
-        print cookie
+	if cookie is not None:
+		print cookie
 	s += ("\n<html>")
 	s += ("<body>")
 	s += ("<p>" + content_line + "\n")
@@ -20,14 +20,14 @@ cgitb.enable()
 
 cookie_string = os.environ.get('HTTP_COOKIE')
 if cookie_string:
-    c = Cookie.SimpleCookie(cookie_string)
-    print build_html_page("I have your cookie!")
-    exit(0)
+	c = Cookie.SimpleCookie(cookie_string)
+	print build_html_page("I have your cookie!")
+	exit(0)
 else:
-    c = Cookie.SimpleCookie()
-    c['name'] = 'test_cookie'
-    print build_html_page("Building cookie...", cookie=c)
-    exit(0)
+	c = Cookie.SimpleCookie()
+	c['name'] = 'test_cookie'
+	print build_html_page("Building cookie...", cookie=c)
+	exit(0)
     
 
 form = cgi.FieldStorage()
