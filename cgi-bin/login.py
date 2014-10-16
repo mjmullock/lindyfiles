@@ -6,6 +6,8 @@ import cgitb
 import sqlite3
 import Cookie
 
+exit(0)
+
 def build_html_page(content_line, cookie=None):
 	s = ''
 	s += ("Content-Type: text/html\n")
