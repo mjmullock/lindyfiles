@@ -4,7 +4,7 @@ import os
 import cgi
 import cgitb
 import sqlite3
-import Cookie
+#import Cookie
 
 exit(0)
 
