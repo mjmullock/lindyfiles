@@ -1,8 +1,5 @@
 
-DROP DATABASE IF EXISTS lindyfiles;
-
-CREATE DATABASE lindyfiles;
-
+DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     username    VARCHAR(100),
     password    VARCHAR(100),
@@ -15,6 +12,7 @@ CREATE TABLE users (
     PRIMARY KEY (email)
 );
 
+DROP TABLE IF EXISTS pros;
 CREATE TABLE pros (
     fname       VARCHAR(100),
     lname       VARCHAR(100),
