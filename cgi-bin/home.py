@@ -53,7 +53,7 @@ else:
 #        # give user cookie w/ that sessid
 #
 # close db connection
-conn.close()
 cur.close()
+conn.close()
 
 
