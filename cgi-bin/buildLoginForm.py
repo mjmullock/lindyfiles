@@ -6,7 +6,6 @@ def build_login_form(cookie=None):
 		print cookie
 	s += ("\n<html>")
 	s += ("<body>")
-	s += ("<p>" + content_line + "\n")
 	s += ("If this is your first time on the site please sign up with your email and password")
 	s += ("<FORM METHOD=GET ACTION='../cgi-bin/login.py'>")
 	s += ("email: <input name='email' size=10 maxlength=50>")
