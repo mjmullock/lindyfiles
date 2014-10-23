@@ -26,10 +26,14 @@ CREATE TABLE pros (
 DROP TABLE IF EXISTS events;
 CREATE TABLE events (
     name            VARCHAR(100),
+	start_date		DATE,
+	end_date		DATE,
     social_dance    BOOLEAN,
     workshop        BOOLEAN,
     competition     BOOLEAN,
     city            VARCHAR(100),
     state           VARCHAR(100),
+	host			VARCHAR(100),
     website         VARCHAR(100),
+	PRIMARY KEY  (name, start_date)
 );     
