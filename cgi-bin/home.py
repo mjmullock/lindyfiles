@@ -54,6 +54,6 @@ else:
 #
 # close db connection
 conn.close()
-c.close()
+cur.close()
 
 
