@@ -31,6 +31,7 @@ CREATE TABLE events (
     social_dance    BOOLEAN,
     workshop        BOOLEAN,
     competition     BOOLEAN,
+	starting_price	SMALLMONEY,
     city            VARCHAR(100),
     state           VARCHAR(100),
 	host			VARCHAR(100),
