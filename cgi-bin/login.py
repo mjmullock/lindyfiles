@@ -5,6 +5,7 @@ import cgitb
 import sqlite3
 import os
 import Cookie
+import uuid
 
 def build_html_page(content_line, cookie=None):
 	s = ''
