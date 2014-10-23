@@ -22,3 +22,14 @@ CREATE TABLE pros (
     teacher     BOOLEAN,
     PRIMARY KEY (fname, lname)
 );
+
+DROP TABLE IF EXISTS events;
+CREATE TABLE events (
+    name            VARCHAR(100),
+    social_dance    BOOLEAN,
+    workshop        BOOLEAN,
+    competition     BOOLEAN,
+    city            VARCHAR(100),
+    state           VARCHAR(100),
+    website         VARCHAR(100),
+);     
