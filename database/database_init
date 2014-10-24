@@ -16,10 +16,13 @@ DROP TABLE IF EXISTS pros;
 CREATE TABLE pros (
     fname       VARCHAR(100),
     lname       VARCHAR(100),
+	picture     VARCHAR(100),
     leader      BOOLEAN,
     follower    BOOLEAN,
-    website     VARCHAR(100),
     teacher     BOOLEAN,
+	website     VARCHAR(100),
+	organization VARCHAR(100),
+	organization_website     VARCHAR(100),
     PRIMARY KEY (fname, lname)
 );
 
