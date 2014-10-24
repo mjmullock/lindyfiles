@@ -26,7 +26,7 @@ import buildLoginForm
 #     results = cur.fetchone()
 #     if results:
 #         name = results[0]
-#         buildPage.build_html_page("Welcome back, " + name) 
+         buildPage.build_html_page("Welcome back, " + name) 
 #     else:
 #         buildPage.build_html_page("Cookie found but user not found")
 
