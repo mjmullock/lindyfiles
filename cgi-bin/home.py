@@ -10,31 +10,31 @@ import buildPage
 import buildLoginForm
 
 # create database connection
-conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
-cur = conn.cursor()
+# conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
+# cur = conn.cursor()
 
 # check for cookie
-cookie_string = os.environ.get('HTTP_COOKIE')
+# cookie_string = os.environ.get('HTTP_COOKIE')
 
 # if there is a cookie
-if cookie_string:
-
-    # look in database for user with that sessid
-    cookie = Cookie.SimpleCookie(cookie_string)
-    sessid = cookie["sessid"]   
-    cur.execute("SELECT fname FROM users WHERE sessid = ?", sessid) 
-    results = cur.fetchone()
-    if results:
-        name = results[0]
-        buildPage.build_html_page("Welcome back, " + name) 
-    else:
-        buildPage.build_html_page("Cookie found but user not found")
+# if cookie_string:
+# 
+#     # look in database for user with that sessid
+#     cookie = Cookie.SimpleCookie(cookie_string)
+#     sessid = cookie["sessid"]   
+#     cur.execute("SELECT fname FROM users WHERE sessid = ?", sessid) 
+#     results = cur.fetchone()
+#     if results:
+#         name = results[0]
+#         buildPage.build_html_page("Welcome back, " + name) 
+#     else:
+#         buildPage.build_html_page("Cookie found but user not found")
 
 # if no cookie show register/login option
-else:
+# else:
 
     # show login/register options
-    buildLoginForm.build_login_form() 
+ #   buildLoginForm.build_login_form() 
  
 #    # if register:
 #    cookie = Cookie.SimpleCookie()
@@ -53,7 +53,7 @@ else:
 #        # give user cookie w/ that sessid
 #
 # close db connection
-cur.close()
-conn.close()
+# cur.close()
+# conn.close()
 
 
