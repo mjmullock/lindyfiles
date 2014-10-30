@@ -28,7 +28,8 @@ if logout:
 		page = build_html_page('Error finding your current cookie. :(')
 	else:
 		c = Cookie.SimpleCookie()
-		c['session'] = oldc['session']
+		a = oldc['session']
+		c['session'] = a
 		c['session']['expires'] = 'Sun, 26 Oct 2014 00:00:01 GMT'
 		page = build_html_page('Goodbye.', cookie=c)
 
