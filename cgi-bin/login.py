@@ -48,7 +48,7 @@ form = cgi.FieldStorage()
 email = form['email'].value
 password = form['password'].value
 signup_type = form['signup_type'].value
-logout = form['logout'].value
+# logout = form['logout'].value
 # print email + ", " + password + ", " + signup_type 
 # print "</body></html>"
 # print build_html_page("Building cookie...", cookie=c)
