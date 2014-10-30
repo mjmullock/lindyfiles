@@ -1,7 +1,5 @@
---Some kind of header here about how to run this? like #!/usr/bin/sqlite3 ???
-
 BULK INSERT events
-FROM 'Swing_Dance_Events.csv' --might have to add path
+FROM './Swing_Dance_Events.csv' --might have to add path
 WITH
 ( 	FIRSTROW = 2,
     FIELDTERMINATOR = ',',  --CSV field delimiter
@@ -10,7 +8,7 @@ WITH
 )
 
 BULK INSERT pros
-FROM 'Pro_Dancers.csv' --might have to add path
+FROM './Pro_Dancers.csv' --might have to add path
 WITH
 ( 	FIRSTROW = 2,
     FIELDTERMINATOR = ',',  --CSV field delimiter
