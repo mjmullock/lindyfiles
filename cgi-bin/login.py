@@ -48,7 +48,7 @@ form = cgi.FieldStorage()
 email = form['email'].value
 password = form['password'].value
 signup_type = form['signup_type'].value
-# logout = form['logout'].value
+logout = form['logout'].value
 # print email + ", " + password + ", " + signup_type 
 # print "</body></html>"
 # print build_html_page("Building cookie...", cookie=c)
@@ -83,11 +83,11 @@ else:
 		page = build_html_page("Sorry, that name is already in use.")
 	elif len(res) != 1:
 		page = build_html_page("Database consistency error, multiple results with the same name")
-	else if logout == 'true':
-		ck = Cookie.SimpleCookie(os.environ.get('HTTP_COOKIE'))
-		ck2 = Cookie.SimpleCookie()
-		ck2['sessid'] = ck['sessid']
-		ck2['expires'] = 'Thu, 01 Jan 1970 00:00:00 GMT'
+	#elif logout == 'true':
+	#	ck = Cookie.SimpleCookie(os.environ.get('HTTP_COOKIE'))
+	#	ck2 = Cookie.SimpleCookie()
+	#	ck2['sessid'] = ck['sessid']
+	#	ck2['expires'] = 'Thu, 01 Jan 1970 00:00:00 GMT'
 	else:
 		if password == res[0][1]:
 			sessid = str(uuid.uuid4())
