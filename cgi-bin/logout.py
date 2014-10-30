@@ -5,7 +5,6 @@ import cgitb
 import sqlite3
 import os
 import Cookie
-from datetime import datetime
 
 def build_html_page(content_line, cookie=None):
 	s = ''
@@ -25,7 +24,7 @@ logout = form['logout'].value
 
 if logout:
 	c = Cookie.SimpleCookie(os.environ.get('HTTP_COOKIE'))
-	c['expires'] = datetime.now()
+	c['expires'] = 'Sun, 26 Oct 2014 00:00:01 GMT'
 	page = build_html_page('Goodbye.', cookie=c)
 
 print page
