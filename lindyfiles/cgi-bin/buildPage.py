@@ -7,10 +7,6 @@ def build_html_page(content_line, cookie=None):
 	s += ("\n<html>")
 	s += ("<body>")
 	s += ("<p>" + content_line + "\n")
-	s += ("<FORM METHOD=GET ACTION='./login.py'>\n")
-	s += ("<input type='hidden' name='logout' value='true'>\n")
-	s += ("<p> <INPUT TYPE=submit value='logout'>\n")
-	s += ("</FORM>\n")
 	s += ("</body>")
 	s += ("</html>")
 	return s
