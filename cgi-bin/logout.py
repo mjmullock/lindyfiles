@@ -3,7 +3,6 @@
 import cgi
 import cgitb
 import sqlite3
-import os
 import Cookie
 
 def build_html_page(content_line, cookie=None):
@@ -23,7 +22,7 @@ form = cgi.FieldStorage()
 logout = form['logout'].value
 
 if logout:
-	c = Cookie.SimpleCookie(os.environ.get('HTTP_COOKIE'))
+	c = Cookie.SimpleCookie()
 	c['expires'] = 'Sun, 26 Oct 2014 00:00:01 GMT'
 	page = build_html_page('Goodbye.', cookie=c)
 
