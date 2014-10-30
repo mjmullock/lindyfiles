@@ -4,6 +4,7 @@ import cgi
 import cgitb
 import sqlite3
 import os
+import Cookie
 from datetime import datetime
 
 def build_html_page(content_line, cookie=None):
