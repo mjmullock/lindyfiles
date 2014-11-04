@@ -1,7 +1,7 @@
-Event Name,Start Date,End Date,State,City,Host,Website
-Steven & Virginie Workshop Weekend,11/14/2014,11/16/2014,NY,Rochester,Groove Juice Swing,http://groovejuiceswing.com/steven-virginie
-Austin Lindy Exchange,11/21/2014,11/23/2014,TX,Austin,Austin Swing Syndicate,http://www.austinlindyexchange.org/
-PittStop Lindy Hop,11/21/2014,11/23/2014,PA,Pittsburgh,PittStop Lindy Hop Committee,http://www.pittstoplindyhop.com/
-Albany Lindy & Blues Exchange,12/12/2014,12/14/2014,NY,Albany,Albany Lindy & Blues,http://www.albanylindyandblues.com/albx/index.php
-Boston Tea Party,3/21/2015,3/23/2015,MA,Boston,Boston Tea Party,http://teapartyswings.com/
-"Big Apple Balboa, Blues, and Lindy Exchange",5/15/2015,5/17/2015,NY,New York City,Babble,http://www.nycbabble.com/
+Event Name,Start Date,End Date,Social Dance?,Workshop?,Competition?,Starting Price,City,State,Host,Website
+Steven & Virginie Workshop Weekend,11/14/2014,11/16/2014,TRUE,TRUE,FALSE,130,Rochester,NY,Groove Juice Swing,http://groovejuiceswing.com/steven-virginie
+Austin Lindy Exchange,11/21/2014,11/23/2014,TRUE,FALSE,FALSE,60,Austin,TX,Austin Swing Syndicate,http://www.austinlindyexchange.org/
+PittStop Lindy Hop,11/21/2014,11/23/2014,TRUE,FALSE,FALSE,60,Pittsburgh,PA,PittStop Lindy Hop Committee,http://www.pittstoplindyhop.com/
+Albany Lindy & Blues Exchange,12/12/2014,12/14/2014,TRUE,TRUE,FALSE,80,Albany,NY,Albany Lindy & Blues,http://www.albanylindyandblues.com/albx/index.php
+Boston Tea Party,3/21/2015,3/23/2015,TRUE,TRUE,TRUE,145,Boston,MA,Boston Tea Party,http://teapartyswings.com/
+"Big Apple Balboa, Blues, and Lindy Exchange",5/15/2015,5/17/2015,TRUE,FALSE,FALSE,,New York City,NY,Babble,http://www.nycbabble.com/
