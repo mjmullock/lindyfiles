@@ -1,2 +1,1 @@
-what's up, all?
-Hellooo friends
+('blah', u'duckduck@goose.edu', '2014-11-08 16:44:34.383336')
