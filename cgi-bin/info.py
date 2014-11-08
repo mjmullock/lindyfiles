@@ -25,7 +25,7 @@ def retrieve_all_results_from_table(table):
 		c.execute("SELECT * from events")
 	elif table == "pros":
 		c.execute("SELECT * from pros")
-		
+
 	res = c.fetchall()
 	c.close()
 	conn.close()

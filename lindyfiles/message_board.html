@@ -10,10 +10,11 @@
 		$("#add_comment").click(function() {
 			$.ajax(
 				{
-					url: "../cgi-bin/load_messages.py",
+					url: "../cgi-bin/show_messages.py",
 					type: "POST",
 					data: {
-						stuff: $("#message").val()
+						stuff: $("#message").val(),
+						clear: 0
 						},
 
 					dataType: "text",
@@ -27,9 +28,16 @@
 		$("#clear_comments").click(function() {
 			$.ajax(
 				{
-					url: "../cgi-bin/clear_messages.py",
+					url: "../cgi-bin/show_messages.py",
 					type: "POST",
-					dataType: "text"
+					data: {
+						stuff: $("#message").val(),
+						clear: 1
+						},
+					dataType: "text",
+					success: function(dat) {
+						$("#message_insert_point").html(dat);
+					},
 				}
 			)
 		});
