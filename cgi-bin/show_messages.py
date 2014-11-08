@@ -26,10 +26,17 @@ def add_msg(new_message, email):
 		f.write("\n")
 		f.close()
 
+def read_messages():
+	s = ''
+	with open("message_board.txt", "r+") as f:
+		for line in f:
+			s += line[0] + '\t' + line[1] + ', ' + line[2] + '\n'
+	return s
+
 cgitb.enable()
 form = cgi.FieldStorage()
 new_message = form['stuff'].value
-clear = form['clear'].value
+clear_messages = int(form['clear'].value)
 conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 cur = conn.cursor()
 
@@ -46,16 +53,11 @@ try:
 except:
 	do_err()
 
-if clear:
+if clear_messages:
 	clear()
 else:
 	add_msg(new_message, email)
 
-s = ''
-with open("message_board.txt", "r+") as f:
-	for line in f:
-		s += line + '\n'
-
 print "Content-type: text/html"
 print
-print s
+print read_messages()
