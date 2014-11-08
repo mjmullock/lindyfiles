@@ -24,15 +24,15 @@
 			);
 		});
 
-		//$("#clear_comments").click(function() {
-		//	$.ajax(
-		//		{
-		//			url: "../cgi-bin/clear_messages.py",
-		//			type: "POST",
-		//			dataType: "text"
-		//		}
-		//	)
-		//});
+		$("#clear_comments").click(function() {
+			$.ajax(
+				{
+					url: "../cgi-bin/clear_messages.py",
+					type: "POST",
+					dataType: "text"
+				}
+			)
+		});
 	});
 </script>
 </head>
