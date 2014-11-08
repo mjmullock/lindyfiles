@@ -6,7 +6,7 @@ import os
 
 cgitb.enable()
 
-s
+s = ''
 with open("message_board.txt", "r+") as f:
 	for line in f:
 		s += line + '\n'
