@@ -7,6 +7,9 @@ def build_html_page(content_line, cookie=None):
 	s += ("\n<html>")
 	s += ("<body>")
 	s += ("<p>" + content_line + "\n")
+	
+	s += ('<a href="../lindyfiles/message_board.html"> Go to the message board</a><p><p>\n')
+	
 	s += ("<FORM METHOD=GET ACTION='./logout.py'>\n")
 	s += ("<input type='hidden' name='logout' value='true'>\n")
 	s += ("<p> <INPUT TYPE=submit value='logout'>\n")

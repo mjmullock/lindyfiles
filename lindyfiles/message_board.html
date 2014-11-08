@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<!-- Testing page for users to post comments. This will eventually become a user review system for community events and such. -->
+
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#add_comment").click(function() {
+			$.ajax(
+				{
+					url: "../cgi-bin/load_messages.py",
+					type: "POST",
+					data: {
+						stuff: $("#message").val()
+						},
+
+					dataType: "text",
+					success: function(dat) {
+						$("#message_insert_point").html(dat);
+					},
+				}
+			);
+		});
+
+		$("#clear_comments").click(function() {
+			$.ajax(
+				{
+					url: "../cgi-bin/clear_messages.py",
+					type: "POST",
+					dataType: "text"
+				}
+			)
+		});
+	});
+</script>
+</head>
+
+</body>
+<h3> Message Board </h3>
+	<input type="text" id="message"/>
+	<button id="add_comment"> Add your comment </button>
+	<button id="clear_comments"> Clear all comments </button>
+
+<pre id="message_insert_point"></pre>
+
+</body>
+</html>
