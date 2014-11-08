@@ -31,6 +31,7 @@ def read_messages():
 	with open("message_board.txt", "r+") as f:
 		for line in f:
 			s += line[0] + '\t' + line[1] + ', ' + line[2] + '\n'
+	return s
 
 cgitb.enable()
 form = cgi.FieldStorage()
