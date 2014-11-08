@@ -10,7 +10,7 @@ from datetime import datetime
 cgitb.enable()
 form = cgi.FieldStorage()
 new_message = form['stuff'].value
-conn = sqlite3.connect'/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
+conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 cur = conn.cursor()
 
 def do_err():
