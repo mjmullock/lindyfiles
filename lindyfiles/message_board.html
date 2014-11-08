@@ -7,11 +7,15 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#load_messages").click(function() {
+		$("#add_comment").click(function() {
 			$.ajax(
 				{
 					url: "../cgi-bin/load_messages.py",
-					type: "GET",
+					type: "POST",
+					data: {
+						stuff: $("#message").val()
+						},
+
 					dataType: "text",
 					success: function(dat) {
 						$("#message_insert_point").append(dat);
@@ -25,7 +29,8 @@
 
 </body>
 <h3> Message Board </h3>
-	<button id="load_messages"> Load messages </button>
+	<input type="text" id="message"/>
+	<button id="add_comment"> Add your comment </button>
 
 <p id="message_insert_point"></p>
 
