@@ -33,8 +33,8 @@ except:
 	do_err()
 
 with open("message_board.txt", "a") as f:
-	msg = str( (new_message, email, datetime.now()) )
-	f.write(new_message)
+	msg = str( (new_message, email, str(datetime.now())) )
+	f.write(msg)
 	f.write("\n")
 	f.close()
 
