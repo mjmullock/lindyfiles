@@ -5,7 +5,7 @@ import cgitb
 import os
 
 def make_page():
-	s = "Content-Type: text/html\n'
+	s = "Content-Type: text/html\n"
 	s += '<html>'
 	s += '<body>'
 	
