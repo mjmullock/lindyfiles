@@ -10,7 +10,7 @@ from datetime import datetime
 cgitb.enable()
 form = cgi.FieldStorage()
 new_message = form['stuff'].value
-conn = sqlite3.connect'/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
+conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 cur = conn.cursor()
 
 def do_err():
@@ -33,8 +33,8 @@ except:
 	do_err()
 
 with open("message_board.txt", "a") as f:
-	msg = str( (new_message, email, datetime.now()) )
-	f.write(new_message)
+	msg = str( (new_message, email, str(datetime.now())) )
+	f.write(msg)
 	f.write("\n")
 	f.close()
 
