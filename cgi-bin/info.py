@@ -16,14 +16,14 @@ def build_html_page(content_line, cookie=None):
  	s += ("</html>")
  	return s
 
-#takes name of table (string) from lindyfiles.db and returns list of comma-separated strings with all results
+#takes name of table (string) from lindyfiles.db and returns list of comma-separated tuples with all results
 def retrieve_all_results_from_table(table):
 	conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 	c = conn.cursor()
 	
-	if table == "events"
+	if table == "events":
 		c.execute("SELECT * from events")
-	if table == "pros"
+	elif table == "pros":
 		c.execute("SELECT * from pros")
 		
 	res = c.fetchall()
@@ -32,16 +32,25 @@ def retrieve_all_results_from_table(table):
 	return res
 	
 
-#takes a list of strings that are the results from a table, then 
+#takes a list of tuples that are the results from a table, then 
 def format_table_results(res):
+	t = '<table style="width:100%">' + '\n'
 	for row in res:
-		print row
+		t+="<tr>"
+		for element in row:
+			t+="<td>" + element + "</td> \n"
+		t+="</tr> \n"
+	t+="</table>"
+	return t
 
 
 cgitb.enable()
 
 res = retrieve_all_results_from_table("events")
-format_table_results(res)
+table = format_table_results(res)
+page = build_html_page(table)
+print page
+
 
 
 
