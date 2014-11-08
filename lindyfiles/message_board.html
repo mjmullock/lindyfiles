@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<!-- Testing page for users to post comments. This will eventually become a user review system for community events and such. -->
+
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#load_messages").click(function() {
+			$.ajax(
+				{
+					url: "../cgi-bin/load_messages.py",
+					type: "GET",
+					dataType: "text",
+					success: function(dat) {
+						$("#message_insert_point").append(dat);
+					},
+				}
+			);
+		});
+	});
+</script>
+</head>
+
+</body>
+<h3> Message Board </h3>
+	<button id="load_messages"> Load messages </button>
+
+<p id="message_insert_point"></p>
+
+</body>
+</html>
