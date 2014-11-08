@@ -26,6 +26,12 @@ def add_msg(new_message, email):
 		f.write("\n")
 		f.close()
 
+def read_messages():
+	s = ''
+	with open("message_board.txt", "r+") as f:
+		for line in f:
+			s += line[0] + '\t' + line[1] + ', ' + line[2] + '\n'
+
 cgitb.enable()
 form = cgi.FieldStorage()
 new_message = form['stuff'].value
@@ -51,11 +57,6 @@ if clear_messages:
 else:
 	add_msg(new_message, email)
 
-s = ''
-with open("message_board.txt", "r+") as f:
-	for line in f:
-		s += line + '\n'
-
 print "Content-type: text/html"
 print
-print s
+print read_messages()
