@@ -20,7 +20,12 @@ def build_html_page(content_line, cookie=None):
 def retrieve_all_results_from_table(table):
 	conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 	c = conn.cursor()
-	c.execute("SELECT * from ?", table)
+	
+	if table == "events":
+		c.execute("select * from events")
+	elif table == "pros":
+		c.execute("select * from pros")
+
 	res = c.fetchall()
 	c.close()
 	conn.close()
@@ -33,7 +38,7 @@ def format_table_results(res):
 		print row
 
 
-gitb.enable()
+cgitb.enable()
 
 res = retrieve_all_results_from_table("events")
 format_table_results(res)
