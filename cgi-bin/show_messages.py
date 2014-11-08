@@ -29,7 +29,7 @@ def add_msg(new_message, email):
 cgitb.enable()
 form = cgi.FieldStorage()
 new_message = form['stuff'].value
-clear_messages = form['clear'].value
+clear_messages = int(form['clear'].value)
 conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 cur = conn.cursor()
 
