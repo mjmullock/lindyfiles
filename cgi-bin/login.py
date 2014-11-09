@@ -86,7 +86,7 @@ else:
 			ck['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
 			c.execute("update users set sessid = ? where email = ?", (sessid, email))
 			conn.commit()
-			page = build_html_page(message="Welcome back, " + email + ".", cookie=ck)
+			page = build_html_page("Welcome back, " + email + ".", cookie=ck)
 		else:
 			page = buildLoginForm.build_login_form(message="Login error: incorrect password entered.")
 
