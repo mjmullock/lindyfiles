@@ -76,7 +76,7 @@ if not len(res):
 	 	cookie = Cookie.SimpleCookie()
 	 	cookie['sessid'] = sessid
 		expiration = datetime.datetime.now() + datetime.timedelta(days=30)
-		cookie['session']['expires'] = expires.strftime("%a, %d %b %Y %H:%M:%S GMT")
+		cookie['session']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
 	 	page = build_html_page("Welcome!", cookie)
 #		page = build_html_page("Welcome, " + name)
 	else:
