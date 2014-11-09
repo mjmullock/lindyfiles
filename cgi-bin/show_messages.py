@@ -41,9 +41,9 @@ def get_inputs():
 	if initial:
 		return (initial, 0, 0)
 	clear_messages = int(form['clear'].value)
-	if clear:
-		return (initial, clear, 0)
-	return (initial, clear, form['stuff'].value)
+	if clear_messages:
+		return (initial, clear_messages, 0)
+	return (initial, clear_messages, form['stuff'].value)
 
 cgitb.enable()
 form = cgi.FieldStorage()
