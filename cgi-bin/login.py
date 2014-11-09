@@ -9,6 +9,7 @@ import uuid
 import datetime
 
 import buildLoginForm
+import home
 
 def build_html_page(content_line, cookie=None):
 	s = ''
@@ -42,8 +43,7 @@ if signup_type == "logout":
 		a = oldc['sessid']
 		c['sessid'] = a
 		c['sessid']['expires'] = 'Sun, 26 Oct 2014 00:00:01 GMT'
-	page = buildLoginForm.build_login_form("You've successfully logged out", cookie=c)
-	print page
+	print buildLoginForm.build_login_form("You've successfully logged out", cookie=c)
 	exit(0)
  
 email = form['email'].value
@@ -66,7 +66,8 @@ if not len(res):
 		expiration = datetime.datetime.now() + datetime.timedelta(days=30)
 		#cookie['sessid']['expires'] = 'Sun, 23 Nov 2014 00:00:01 GMT'
 		cookie['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
-	 	page = build_html_page("Welcome!", cookie)
+	 	#page = build_html_page("Welcome!", cookie)
+		home()
 	else:
 		page = buildLoginForm.build_login_form("Sorry, user " + email + " not found.")
 		

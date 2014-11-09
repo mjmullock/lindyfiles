@@ -1,4 +1,5 @@
 #!/usr/bin/python
+#THIS FILE IS NOW OBSOLETE ~Bonnie, 11/8/14
 
 import cgi
 import cgitb
