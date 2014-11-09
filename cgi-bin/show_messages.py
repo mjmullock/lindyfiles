@@ -28,16 +28,28 @@ def add_msg(new_message, email):
 
 def read_messages():
 	s = ''
-	with open("message_board.txt", "r+") as f:
-		for line in f:
-			line = line.split('\t')
-			s += line[0] + '\t' + line[1] + ', ' + line[2] + '\n'
+	if os.path.getsize("message_board.txt") <= 0:
+		s = "No messages yet!"
+	else:
+		with open("message_board.txt", "r+") as f:
+			for line in f:
+				line = line.split('\t')
+				s += line[0] + '\t' + line[1] + ', ' + line[2] + '\n'
 	return s
+
+def get_inputs():
+	initial = int(form['initial'].value)
+	if not initial:
+		return (initial, 0, 0)
+	clear_messages = int(form['clear'].value)
+	if clear:
+		return (initial, clear, 0)
+	return (initial, clear, form['stuff'].value)
 
 cgitb.enable()
 form = cgi.FieldStorage()
-new_message = form['stuff'].value
-clear_messages = int(form['clear'].value)
+
+(initial, clear_messages, new_message) = get_inputs()
 conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 cur = conn.cursor()
 
@@ -56,7 +68,7 @@ except:
 
 if clear_messages:
 	clear()
-else:
+elif not initial:
 	add_msg(new_message, email)
 
 print "Content-type: text/html"
