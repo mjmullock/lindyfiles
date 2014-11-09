@@ -42,7 +42,7 @@ if cookie_string:
 		cur.execute("SELECT email FROM users WHERE sessid = ?", (sessid,)) 
 		results = cur.fetchone()
 		email = results[0]
-		print buildPage.build_html_page('<a href="../lindyfiles/message_board.html"> Go to the message board</a><p><p>\t' + '<a href="../cgi-bin/displayInfo.py"> View information</a>\n' +	"Welcome back, " + email) 
+		print buildPage.build_html_page("Welcome back, " + email) 
 	except:
 		# print buildPage.build_html_page("Cookie found but user not found. sessid = " + cookie["sessid"].value)
 		print buildLoginForm.build_login_form() 
