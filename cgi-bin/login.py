@@ -37,19 +37,18 @@ if signup_type not in ['register', 'login', 'logout']:
 if signup_type == "logout":
 	oldc = Cookie.SimpleCookie(os.environ.get('HTTP_COOKIE'))
 	if oldc is None:
-		page = buildLoginForm.build_login_form('Error finding your current cookie. :(')
+		page = buildLoginForm.build_login_form(message='Error finding your current cookie. :(')
 	else:
 		c = Cookie.SimpleCookie()
 		a = oldc['sessid']
 		c['sessid'] = a
 		c['sessid']['expires'] = 'Sun, 26 Oct 2014 00:00:01 GMT'
-	page = buildLoginForm.build_login_form("You've successfully logged out", cookie=c)
+	page = buildLoginForm.build_login_form(message="You've successfully logged out", cookie=c)
 	print page
 	exit(0)
  
 email = form['email'].value
 password = form['password'].value
-
 
 
 conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
@@ -70,13 +69,13 @@ if not len(res):
 	 	page = build_html_page("Welcome!", cookie)
 		#home()
 	else:
-		page = buildLoginForm.build_login_form("Sorry, user " + email + " not found.")
+		page = buildLoginForm.build_login_form(message="Sorry, user " + email + " not found.")
 		
 else:
 	if signup_type == 'register':
-		page = buildLoginForm.build_login_form("Sorry, that name is already in use. Please choose another username.")
+		page = buildLoginForm.build_login_form(message="Sorry, that name is already in use. Please choose another username.")
 	elif len(res) != 1:
-		page = buildLoginForm.build_login_form("Database consistency error, multiple results with the same name.")
+		page = buildLoginForm.build_login_form(message="Database consistency error, multiple results with the same name.")
 	else:
 		if password == res[0][1]:
 			sessid = str(uuid.uuid4())
@@ -87,9 +86,9 @@ else:
 			ck['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
 			c.execute("update users set sessid = ? where email = ?", (sessid, email))
 			conn.commit()
-			page = build_html_page("Welcome back, " + email + ".", cookie=ck)
+			page = build_html_page(message="Welcome back, " + email + ".", cookie=ck)
 		else:
-			page = buildLoginForm.build_login_form("Login error: incorrect password entered.")
+			page = buildLoginForm.build_login_form(message="Login error: incorrect password entered.")
 
 print page
 exit(0)

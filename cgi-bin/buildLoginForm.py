@@ -26,4 +26,4 @@ def build_login_form(message="", cookie=None):
 	return s
 
 if __name__=='__main__':
-    print build_login_form(message, cookie=None)
+    print build_login_form(message="", cookie=None)
