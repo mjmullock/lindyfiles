@@ -24,12 +24,9 @@ def build_html_page(content_line, cookie=None):
  
 cgitb.enable()
  
-form = cgi.FieldStorage()
-email = form['email'].value
-password = form['password'].value
-signup_type = form['signup_type'].value
-
-if signup_type not in ['register', 'login', 'logout']:
+ signup_type = form['signup_type'].value
+ 
+ if signup_type not in ['register', 'login', 'logout']:
 	print buildLoginForm.build_login_form("Signup type incorrectly specified.")
 	exit(0)
 
@@ -45,6 +42,12 @@ if signup_type == "logout":
 	page = buildLoginForm.build_login_form("You've successfully logged out", cookie=c)
 	print page
 	exit(0)
+ 
+form = cgi.FieldStorage()
+email = form['email'].value
+password = form['password'].value
+
+
 
 conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 c = conn.cursor()
