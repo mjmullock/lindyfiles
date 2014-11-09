@@ -5,7 +5,6 @@ import cgitb
 import os
 import sqlite3
 import Cookie
-import pickle
 from datetime import datetime
 
 
@@ -22,7 +21,7 @@ def clear():
 
 def add_msg(new_message, email):
 	with open("message_board.txt", "a") as f:
-		msg = pickle.dumps( (new_message, email, str(datetime.now())) )
+		msg = new_message + '\t' + email + '\t' + str(datetime.now())
 		f.write(msg)
 		f.write("\n")
 		f.close()
@@ -31,7 +30,7 @@ def read_messages():
 	s = ''
 	with open("message_board.txt", "r+") as f:
 		for line in f:
-			line = pickle.loads(line)
+			line = line.split('\t')
 			s += line[0] + '\t' + line[1] + ', ' + line[2] + '\n'
 	return s
 
