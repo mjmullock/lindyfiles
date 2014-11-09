@@ -67,8 +67,8 @@ if not len(res):
 		expiration = datetime.datetime.now() + datetime.timedelta(days=30)
 		#cookie['sessid']['expires'] = 'Sun, 23 Nov 2014 00:00:01 GMT'
 		cookie['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
-	 	#page = build_html_page("Welcome!", cookie)
-		home()
+	 	page = build_html_page("Welcome!", cookie)
+		#home()
 	else:
 		page = buildLoginForm.build_login_form("Sorry, user " + email + " not found.")
 		
