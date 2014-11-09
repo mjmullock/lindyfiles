@@ -8,12 +8,27 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
+		$.ajax(
+			{
+				url: "../cgi-bin/show_messages.py",
+				type: "POST",
+				data: {
+					initial: 1
+					},
+				dataType: "text",
+				success:function(dat) {
+					$("#message_insert_point").html(dat);
+				},
+			}
+		);
+
 		$("#add_comment").click(function() {
 			$.ajax(
 				{
 					url: "../cgi-bin/show_messages.py",
 					type: "POST",
 					data: {
+						initial: 0,
 						stuff: $("#message").val(),
 						clear: 0
 						},
@@ -32,7 +47,7 @@
 					url: "../cgi-bin/show_messages.py",
 					type: "POST",
 					data: {
-						stuff: $("#message").val(),
+						initial: 0,
 						clear: 1
 						},
 					dataType: "text",
