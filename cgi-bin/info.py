@@ -38,7 +38,7 @@ def format_table_results(res):
 	for row in res:
 		t+="<tr>"
 		for element in row:
-			t+="<td>" + element + "</td> \n"
+			t+="<td>" + str(element) + "</td> \n"
 		t+="</tr> \n"
 	t+="</table>"
 	return t
