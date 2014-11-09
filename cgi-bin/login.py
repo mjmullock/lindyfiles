@@ -47,14 +47,14 @@ if not len(res):
 		#cookie['sessid']['expires'] = 'Sun, 23 Nov 2014 00:00:01 GMT'
 		cookie['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
 	 	page = build_html_page("Welcome!", cookie)
-#		page = build_html_page("Welcome, " + name)
 	else:
-		page = build_html_page("Sorry, user '" + email + "' not found.")
+		page = buildLoginForm.build_login_form("Sorry, user '" + email + "' not found.")
+		
 else:
 	if signup_type == 'register':
-		page = build_html_page("Sorry, that name is already in use.")
+		page = buildLoginForm.build_login_form("Sorry, that name is already in use. Please choose another username."
 	elif len(res) != 1:
-		page = build_html_page("Database consistency error, multiple results with the same name")
+		page = buildLoginForm.build_login_form("Database consistency error, multiple results with the same name.")
 	else:
 		if password == res[0][1]:
 			sessid = str(uuid.uuid4())
@@ -67,7 +67,7 @@ else:
 			conn.commit()
 			page = build_html_page("Welcome back, " + email + ".", cookie=ck)
 		else:
-			page = build_html_page("Login error: incorrect password entered.")
+			page = buildLoginForm.build_login_form("Login error: incorrect password entered.")
 
 print page
 exit(0)
