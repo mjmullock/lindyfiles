@@ -6,6 +6,8 @@ def header():
 header()
 
 print "<html><body>"
+print '<a href="../cgi-bin/home.py">Home</a>\t\t'
+print '<a href="../lindyfiles/message_board.html"> Go to the message board</a>\n'
 print "<h2>Please choose a table to view</h2>"
 print "<FORM METHOD=GET ACTION='./info.py'>\n"
 print "<select name = 'table'>"
