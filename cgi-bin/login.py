@@ -62,7 +62,7 @@ else:
 	 		ck['sessid'] = sessid 
 			expiration = datetime.datetime.now() + datetime.timedelta(days=30)
 			#cookie['sessid']['expires'] = 'Sun, 23 Nov 2014 00:00:01 GMT'
-			cookie['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
+			ck['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
 			c.execute("update users set sessid = ? where email = ?", (sessid, email))
 			conn.commit()
 			page = build_html_page("Welcome back, " + email + ".", cookie=ck)
