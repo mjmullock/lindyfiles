@@ -48,11 +48,11 @@ if not len(res):
 		cookie['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
 	 	page = build_html_page("Welcome!", cookie)
 	else:
-		page = buildLoginForm.build_login_form("Sorry, user '" + email + "' not found.")
+		page = buildLoginForm.build_login_form("Sorry, user " + email + " not found.")
 		
 else:
 	if signup_type == 'register':
-		page = buildLoginForm.build_login_form("Sorry, that name is already in use. Please choose another username."
+		page = buildLoginForm.build_login_form("Sorry, that name is already in use. Please choose another username.")
 	elif len(res) != 1:
 		page = buildLoginForm.build_login_form("Database consistency error, multiple results with the same name.")
 	else:
