@@ -6,6 +6,7 @@ import sqlite3
 import os
 import Cookie
 import uuid
+import datetime
 
 def build_html_page(content_line, cookie=None):
 	s = ''
@@ -73,7 +74,9 @@ if not len(res):
 		c.execute("insert into users (email, password, sessid) values(?,?,?);", (email, password, sessid))
 		conn.commit()
 	 	cookie = Cookie.SimpleCookie()
-	 	cookie['sessid'] = sessid 
+	 	cookie['sessid'] = sessid
+		expiration = datetime.datetime.now() + datetime.timedelta(days=30)
+		cookie['session']['expires'] = expires.strftime("%a, %d %b %Y %H:%M:%S GMT")
 	 	page = build_html_page("Welcome!", cookie)
 #		page = build_html_page("Welcome, " + name)
 	else:
