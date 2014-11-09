@@ -24,12 +24,14 @@ def build_html_page(content_line, cookie=None):
  
 cgitb.enable()
  
- signup_type = form['signup_type'].value
+signup_type = form['signup_type'].value
  
- if signup_type not in ['register', 'login', 'logout']:
+
+if signup_type not in ['register', 'login', 'logout']:
 	print buildLoginForm.build_login_form("Signup type incorrectly specified.")
 	exit(0)
 
+#checking signup type first, to see if you should logout and not check for other form elements that wouldn't exist
 if signup_type == "logout":
 	oldc = Cookie.SimpleCookie(os.environ.get('HTTP_COOKIE'))
 	if oldc is None:
