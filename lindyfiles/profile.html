@@ -1,0 +1,30 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajax(
+            {
+                url: "../cgi-bin/get_profile_data.py",
+                type: "GET",
+                dataType: "text",
+                success: function(dat) {
+                    console.log(dat);
+                    var data_array = dat.split("\t");
+                    console.log(data_array);
+                    $("#name").html(data_array(0));
+                },
+            }
+        );             
+    });
+</script>
+</head>
+<body
+    <h2>Update your profile</h2>
+    <div id=name>Name: <p></div>
+    <div id=email>Email: <p></div>
+    <div id=pic>Picture: <p></div>
+    <div id=leader>Leader? <p></div>
+    <div id=follower>Follower? <p></div>
+</body>
+</html>
