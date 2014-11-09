@@ -43,7 +43,8 @@ if signup_type == "logout":
 		a = oldc['sessid']
 		c['sessid'] = a
 		c['sessid']['expires'] = 'Sun, 26 Oct 2014 00:00:01 GMT'
-	print buildLoginForm.build_login_form("You've successfully logged out", cookie=c)
+	page = buildLoginForm.build_login_form("You've successfully logged out", cookie=c)
+	print page
 	exit(0)
  
 email = form['email'].value
