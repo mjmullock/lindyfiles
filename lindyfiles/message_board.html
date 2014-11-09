@@ -8,19 +8,21 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		$.ajax(
-			{
-				url: "../cgi-bin/show_messages.py",
-				type: "POST",
-				data: {
-					initial: 1
+		setInterval(function() {
+			$.ajax(
+				{
+					url: "../cgi-bin/show_messages.py",
+					type: "POST",
+					data: {
+						initial: 1
+						},
+					dataType: "text",
+					success:function(dat) {
+						$("#message_insert_point").html(dat);
 					},
-				dataType: "text",
-				success:function(dat) {
-					$("#message_insert_point").html(dat);
-				},
-			}
-		);
+				}
+			);
+		});
 
 		$("#add_comment").click(function() {
 			$.ajax(
