@@ -8,6 +8,8 @@ import Cookie
 import uuid
 import datetime
 
+import buildLoginForm
+
 def build_html_page(content_line, cookie=None):
 	s = ''
  	s += ("Content-Type: text/html\n")
