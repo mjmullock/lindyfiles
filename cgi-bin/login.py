@@ -33,7 +33,7 @@ if signup_type not in ['register', 'login', 'logout']:
 	print buildLoginForm.build_login_form("Signup type incorrectly specified.")
 	exit(0)
 
-if signup_type == "logout':
+if signup_type == "logout":
 	oldc = Cookie.SimpleCookie(os.environ.get('HTTP_COOKIE'))
 	if oldc is None:
 		page = buildLoginForm.build_login_form('Error finding your current cookie. :(')
