@@ -16,12 +16,25 @@
                 },
             }
         );             
+
+        $("#submit_name_edit").click(function() {
+            $.ajax(
+                {
+                    url: "../cgi-bin/edit_profile_data.py",
+                    type: "POST",
+                    data: {
+                        fieldName: "name",
+                        newValue: $("$editname")
+                    }
+                    dataType: "text",
+            )
+        }); 
     });
 </script>
 </head>
 <body
     <h2>Update your profile</h2>
-    <div id=name>Name: <p></div>
+    <div id=name>Name: </div> <input id="editname" type="text" name="fname"><div id=submit_name_edit>Edit?</div>
     <div id=email>Email: <p></div>
     <div id=pic>Picture: <p></div>
     <div id=leader>Leader? <p></div>
