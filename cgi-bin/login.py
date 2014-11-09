@@ -24,6 +24,7 @@ def build_html_page(content_line, cookie=None):
  
 cgitb.enable()
  
+form = cgi.FieldStorage()
 signup_type = form['signup_type'].value
  
 
@@ -45,7 +46,6 @@ if signup_type == "logout":
 	print page
 	exit(0)
  
-form = cgi.FieldStorage()
 email = form['email'].value
 password = form['password'].value
 
