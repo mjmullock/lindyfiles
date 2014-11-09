@@ -6,6 +6,7 @@ def build_html_page(content_line, cookie=None):
 		print cookie
 	s += ("\n<html>")
 	s += ("<body>")
+	s += ('<a href="../cgi-bin/home.py">Home</a>\t\t')
 	s += ('<a href="../lindyfiles/message_board.html"> Go to the message board</a>\t\t')
 	s += ('<a href="../cgi-bin/displayInfo.py"> View information</a>\n')	
 	s += ("<p>" + content_line + "\n")
