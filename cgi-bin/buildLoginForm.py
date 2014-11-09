@@ -1,5 +1,5 @@
 
-def build_login_form(cookie=None):
+def build_login_form(message, cookie=None):
 	s = ''
 	s += ("Content-Type: text/html\n")
 	if cookie is not None:
