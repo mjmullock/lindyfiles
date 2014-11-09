@@ -29,8 +29,21 @@ email = form['email'].value
 password = form['password'].value
 signup_type = form['signup_type'].value
 
-if signup_type not in ['register', 'login']:
-	print build_html_page("Signup type incorrectly specified.")
+if signup_type not in ['register', 'login', 'logout']:
+	print buildLoginForm.build_login_form("Signup type incorrectly specified.")
+	exit(0)
+
+if signup_type == "logout':
+	oldc = Cookie.SimpleCookie(os.environ.get('HTTP_COOKIE'))
+	if oldc is None:
+		page = buildLoginForm.build_login_form('Error finding your current cookie. :(')
+	else:
+		c = Cookie.SimpleCookie()
+		a = oldc['sessid']
+		c['sessid'] = a
+		c['sessid']['expires'] = 'Sun, 26 Oct 2014 00:00:01 GMT'
+	page = buildLoginForm.build_login_form("You've successfully logged out", cookie=c)
+	print page
 	exit(0)
 
 conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
