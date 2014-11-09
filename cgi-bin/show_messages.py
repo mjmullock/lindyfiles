@@ -33,7 +33,7 @@ def read_messages():
 		with open("message_board.txt", "r+") as f:
 			for line in f:
 				line = line.split('\t')
-				s += line[0] + '\t' + line[1] + ', ' + line[2] + '\n'
+				s += '(' + line[2].strip() + ') ' + line[1] + ':\t' + line[0] + '\n'
 	return s
 
 def get_inputs():
