@@ -13,7 +13,7 @@ def do_err(s):
 	exit(1)
 
 def main():
-
+	
 	cgitb.enable()
 	conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 	c = conn.cursor()
@@ -21,18 +21,14 @@ def main():
 	if not ck_string:
 		do_err("User not logged in.")
 
+	form = cgi.FieldStorage()
+	field_name = form['fieldName'].value
+	new_val = form['newVal'].value
+
 	try:
 		ck = Cookie.SimpleCookie(cookie_string)
 		sessid = ck['sessid'].value
-		c.execute("SELECT (username, password, fname, email, picture, leader, follower) FROM users WHERE sessid = ?", (sessid,))
-		result = c.fetchone()[0]
+		c.execute("UPDATE users SET ? = ? WHERE sessid = ?", (field_name, new_val, sessid))
+		conn.commit()
 	except:
 		do_err("User not recognized.")
-
-	print "Content-type: text/html"
-	print
-	for field in result:
-		print field + '\t'
-
-if __name__ == "__main__":
-	main()
