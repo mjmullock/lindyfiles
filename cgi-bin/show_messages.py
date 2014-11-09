@@ -39,7 +39,7 @@ def read_messages():
 
 def get_inputs():
 	initial = int(form['initial'].value)
-	if not initial:
+	if initial:
 		return (initial, 0, 0)
 	clear_messages = int(form['clear'].value)
 	if clear:
