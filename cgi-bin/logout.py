@@ -29,8 +29,8 @@ if logout:
 	else:
 		c = Cookie.SimpleCookie()
 		a = oldc['sessid']
-		c['session'] = a
-		c['session']['expires'] = 'Sun, 26 Oct 2014 00:00:01 GMT'
+		c['sessid'] = a
+		c['sessid']['expires'] = 'Sun, 26 Oct 2014 00:00:01 GMT'
 		page = build_html_page('Goodbye.', cookie=c)
 
 print page

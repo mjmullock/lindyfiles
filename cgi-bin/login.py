@@ -22,46 +22,14 @@ def build_html_page(content_line, cookie=None):
  
 cgitb.enable()
  
-# cookie_string = os.environ.get('HTTP_COOKIE')
-# if cookie_string:
-# 	try:
-# 		c = Cookie.SimpleCookie(cookie_string)
-# 		print build_html_page("sessid: " + c["sessid"].value)
-# 		exit(0)
-# 	except:
-# 		c = Cookie.SimpleCookie()
-# 		c['sessid'] = 'test_cookie'
-# 		print build_html_page("Building cookie...", cookie=c)
-# 		exit(0)
-# else:
-# 	c = Cookie.SimpleCookie()
-# 	c['sessid'] = 'test_cookie'
-# 	print build_html_page("Building cookie...", cookie=c)
-# 	exit(0)
-    
-# c = Cookie.SimpleCookie()
-# c['sessid'] = uuid.uuid1()
-
 form = cgi.FieldStorage()
-# print "Content-type: text/html\n"
-# print "Set-Cookie: sessid=18340592-5bc6-11e4-874d-deadbe099100\n\n" 
-# print "<html><body>"
 email = form['email'].value
 password = form['password'].value
 signup_type = form['signup_type'].value
-# logout = form['logout'].value
-# print email + ", " + password + ", " + signup_type 
-# print "</body></html>"
-# print build_html_page("Building cookie...", cookie=c)
-# exit(0)
-# email = form['email'].value
-# name = form["name"].value
-# password = form['password'].value
-# signup_type = form['signup_type'].value
+
 if signup_type not in ['register', 'login']:
 	print build_html_page("Signup type incorrectly specified.")
 	exit(0)
-
 
 conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 c = conn.cursor()
@@ -76,7 +44,7 @@ if not len(res):
 	 	cookie = Cookie.SimpleCookie()
 	 	cookie['sessid'] = sessid
 		expiration = datetime.datetime.now() + datetime.timedelta(days=30)
-		cookie['session']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
+		cookie['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
 	 	page = build_html_page("Welcome!", cookie)
 #		page = build_html_page("Welcome, " + name)
 	else:
@@ -86,11 +54,6 @@ else:
 		page = build_html_page("Sorry, that name is already in use.")
 	elif len(res) != 1:
 		page = build_html_page("Database consistency error, multiple results with the same name")
-	#elif logout == 'true':
-	#	ck = Cookie.SimpleCookie(os.environ.get('HTTP_COOKIE'))
-	#	ck2 = Cookie.SimpleCookie()
-	#	ck2['sessid'] = ck['sessid']
-	#	ck2['expires'] = 'Thu, 01 Jan 1970 00:00:00 GMT'
 	else:
 		if password == res[0][1]:
 			sessid = str(uuid.uuid4())
