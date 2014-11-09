@@ -12,7 +12,8 @@
                     console.log(dat);
                     var data_array = dat.split("\t");
                     console.log(data_array);
-                    $("#name").html(data_array(0));
+                    $("#name").html(data_array[0]);
+                    $("#email").html(data_array[1]);
                 },
             }
         );             
