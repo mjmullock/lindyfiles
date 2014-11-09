@@ -6,6 +6,7 @@ def build_login_form(cookie=None):
 		print cookie
 	s += ("\n<html>\n")
 	s += ("<body>\n")
+	s += ("<p style='color:red'>" + message + "</p>")
 	s += ("If this is your first time on the site please sign up with your email and password\n")
 	s += ("<FORM METHOD=GET ACTION='./login.py'>\n")
 	s += ("email: <input name='email' size=30 maxlength=50>\n")
@@ -25,4 +26,4 @@ def build_login_form(cookie=None):
 	return s
 
 if __name__=='__main__':
-    print build_login_form(cookie=None)
+    print build_login_form(message, cookie=None)
