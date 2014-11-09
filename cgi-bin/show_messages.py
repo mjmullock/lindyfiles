@@ -28,8 +28,8 @@ def add_msg(new_message, email):
 
 def read_messages():
 	s = ''
-	if os.path.getsize("message_board.txt") <= 0:
-		s = "No messages yet!"
+	#if os.path.getsize("message_board.txt") <= 0:
+	#	s = "No messages yet!"
 	else:
 		with open("message_board.txt", "r+") as f:
 			for line in f:
