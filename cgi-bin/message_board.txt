@@ -1,1 +1,4 @@
-('blah', u'duckduck@goose.edu', '2014-11-08 16:44:34.383336')
+Hurr hurr hurr	smerrill@u.rochester.edu	2014-11-08 18:43:29.044489
+BWAHAHAHAHAHA	myemail@gmail.com	2014-11-08 18:50:21.718546
+Hello new improved one	myemail@gmail.com	2014-11-08 18:50:29.436674
+Our site is working!!!!	smerrill@u.rochester.edu	2014-11-08 18:59:02.763486
