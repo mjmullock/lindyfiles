@@ -27,6 +27,9 @@
                         newValue: $("$editname")
                     }
                     dataType: "text",
+                    success: function() {
+                        $("#name").html($("$editname"))
+                    }
             )
         }); 
     });
