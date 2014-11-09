@@ -46,7 +46,10 @@ def format_table_results(res):
 
 cgitb.enable()
 
-res = retrieve_all_results_from_table("events")
+form = cgi.FieldStorage()
+selected_table = form['table'].value
+
+res = retrieve_all_results_from_table(selected_table)
 table = format_table_results(res)
 page = build_html_page(table)
 print page
