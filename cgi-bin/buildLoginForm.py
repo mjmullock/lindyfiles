@@ -3,7 +3,7 @@ def build_login_form(message="", cookie=None):
 	s = ''
 	s += ("Content-Type: text/html\n")
 	if cookie is not None:
-		print cookie
+		s += cookie.output()
 	s += ("\n<html>\n")
 	s += ("<body>\n")
 	s += ("<p style='color:red'>" + message + "</p>")
