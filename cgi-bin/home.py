@@ -33,12 +33,12 @@ if cookie_string:
 		print buildPage.build_html_page("Welcome back, " + email) 
 	except:
 		# print buildPage.build_html_page("Cookie found but user not found. sessid = " + cookie["sessid"].value)
-		print buildLoginForm.build_login_form() 
+		print buildLoginForm.build_login_form("") 
 # if no cookie show register/login option
 else:
 
 	# show login/register options
-	print buildLoginForm.build_login_form() 
+	print buildLoginForm.build_login_form("") 
  
 
 # close db connection
