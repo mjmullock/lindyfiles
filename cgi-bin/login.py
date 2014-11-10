@@ -67,13 +67,9 @@ if not len(res):
 		#cookie['sessid']['expires'] = 'Sun, 23 Nov 2014 00:00:01 GMT'
 		cookie['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
 	 	page = build_html_page("Welcome!", cookie)
-		print page
-		exit(0)
 		#home()
 	else:
 		page = buildLoginForm.build_login_form(message="Sorry, user " + email + " not found.")
-		print page
-		exit(0)
 		
 else:
 	if signup_type == 'register':
@@ -94,5 +90,7 @@ else:
 		else:
 			page = buildLoginForm.build_login_form(message="Login error: incorrect password entered.")
 
+c.close()
+conn.close()
 print page
 exit(0)
