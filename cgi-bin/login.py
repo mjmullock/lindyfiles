@@ -9,7 +9,7 @@ import uuid
 import datetime
 
 import buildLoginForm
-import home
+#import home
 
 def build_html_page(content_line, cookie=None):
 	s = ''
