@@ -1,7 +1,7 @@
 
 def build_html_page(content_line, cookie=None):
 	s = ''
-	s += ("Content-Type: text/html\n")
+	s += ("Content-type: text/html\n")
 	if cookie is not None:
 		s += cookie.output()
 	s += ("\n<html>")
