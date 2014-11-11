@@ -13,7 +13,7 @@ import buildLoginForm
 
 def build_html_page(content_line, cookie=None):
 	s = ''
- 	s += ("Content-Type: text/html\n")
+ 	s += ("Content-Type: text/html\n\n")
  	if cookie is not None:
  		s += cookie.output()
  	s += ("\n<html>")
