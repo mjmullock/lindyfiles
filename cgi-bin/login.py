@@ -9,12 +9,13 @@ import uuid
 import datetime
 
 import buildLoginForm
+#import home
 
 def build_html_page(content_line, cookie=None):
 	s = ''
- 	s += ("Content-Type: text/html\n")
+ 	s += ("Content-Type: text/html\n\n")
  	if cookie is not None:
- 		print cookie
+ 		s += cookie.output()
  	s += ("\n<html>")
  	s += ("<body>")
  	s += ("<p>" + content_line + "\n")
@@ -50,7 +51,6 @@ email = form['email'].value
 password = form['password'].value
 
 
-
 conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 c = conn.cursor()
 c.execute("select * from users where email = ?", (email,))
@@ -67,6 +67,7 @@ if not len(res):
 		#cookie['sessid']['expires'] = 'Sun, 23 Nov 2014 00:00:01 GMT'
 		cookie['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
 	 	page = build_html_page("Welcome!", cookie)
+		#home()
 	else:
 		page = buildLoginForm.build_login_form("Sorry, user " + email + " not found.")
 		
@@ -89,5 +90,7 @@ else:
 		else:
 			page = buildLoginForm.build_login_form("Login error: incorrect password entered.")
 
+c.close()
+conn.close()
 print page
 exit(0)
