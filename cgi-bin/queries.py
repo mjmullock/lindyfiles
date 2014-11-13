@@ -19,9 +19,11 @@ def get_upcoming_events():
     conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
     cur = conn.cursor()
 
-    format = "%y-%m-%d"
-    today = datetime.datetime.today().strftime(format)
+    format = "%Y-%m-%d"
+    today = datetime.datetime.today()
+    today = today.strftime(format)
     future = today + datetime.timedelta(days=30)
+    future = future.strftime(format)
     cur.execute("select * from events where start_date between ? and ?", (today, future))        
     res = cur.fetchall()
     print res
@@ -29,5 +31,5 @@ def get_upcoming_events():
     cur.close()
     conn.close()
 
-get_upcoming_events()
-
+if __name__ = '__main__':
+	exit(0)
