@@ -16,7 +16,7 @@ def main():
 
 	cgitb.enable()
 	conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
-	c = conn.cursor()
+	cur = conn.cursor()
 	ck_string = os.environ.get('HTTP_COOKIE')
 	if not ck_string:
 		do_err("User not logged in.")
@@ -24,8 +24,8 @@ def main():
 	try:
 		ck = Cookie.SimpleCookie(ck_string)
 		sessid = ck['sessid'].value
-		c.execute("SELECT (username, fname, email, password, picture, leader, follower) FROM users WHERE sessid = ?", (sessid,))
-		result = c.fetchone()
+		cur.execute("SELECT username, fname, email, password, picture, leader, follower FROM users WHERE sessid = ?", (sessid,))
+		result = cur.fetchone()
 		print "Content-type: text/html"
 		print
 		for field in result:
