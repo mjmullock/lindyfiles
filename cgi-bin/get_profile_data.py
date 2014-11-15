@@ -27,7 +27,7 @@ def main():
 		c.execute("SELECT (username, fname, email, password, picture, leader, follower) FROM users WHERE sessid = ?", (sessid,))
 		result = c.fetchone()[0]
 	except:
-		do_err("User not recognized.")
+		do_err("User not recognized." + ck.output())
 
 	print "Content-type: text/html"
 	print
