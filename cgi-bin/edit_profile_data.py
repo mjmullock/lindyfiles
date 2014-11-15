@@ -25,7 +25,7 @@ def main():
 	field_name = form['fieldName'].value
 	new_val = form['newValue'].value
 
-	ck = Cookie.SimpleCookie(cookie_string)
+	ck = Cookie.SimpleCookie(ck_string)
 	sessid = ck['sessid'].value
 
 	try:
