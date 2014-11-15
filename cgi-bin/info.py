@@ -46,6 +46,16 @@ def format_table_results(res):
 	t+="</table>"
 	return t
 
+def show_event_links(res):
+	t = '<table style="width:100%">' + '\n'
+	for row in res:
+		t += "<tr>"
+		name = str(row[0])
+		t += "<a href='../cgi-bin/load_event.py?eventName=" + name + "> " + name + " </a>"
+		t += "</tr> \n"
+	t += "</table>"
+	return t
+
 
 cgitb.enable()
 
@@ -53,10 +63,9 @@ form = cgi.FieldStorage()
 selected_table = form['table'].value
 
 res = retrieve_all_results_from_table(selected_table)
-table = format_table_results(res)
+if selected_table == "pros":
+	table = format_table_results(res)
+else:
+	table = show_event_links(res)
 page = build_html_page(table)
 print page
-
-
-
-
