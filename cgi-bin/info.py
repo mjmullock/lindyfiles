@@ -66,6 +66,7 @@ res = retrieve_all_results_from_table(selected_table)
 if selected_table == "pros":
 	table = format_table_results(res)
 else:
-	table = show_event_links(res)
+	# table = show_event_links(res)
+	table = format_table_results(res)
 page = build_html_page(table)
 print page
