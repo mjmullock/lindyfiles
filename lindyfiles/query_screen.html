@@ -4,10 +4,44 @@
 
 <html>
 
+<head>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		$("#query_table").click(function() {
+			$.ajax(
+				{
+					url: "../cgi-bin/info.py",
+					type: "POST",
+					data: {
+						table: $("#table").val()
+					},
+					dataType: "text",
+					success: function(dat) {
+						$("#table_insert_point").html(dat);
+					},
+				}
+			);
+		};
+	});
+</script>
+</head>
+
 <body>
 	<a href="../cgi-bin/home.py"> Home </a>
 	<a href="../lindyfiles/message_board.html"> Message Board </a>
+	<a href="../lindyfiles/profile.html"> Profile </a>
+	
 	<h3> Choose a table to view: </h3>
+	
+	<input type="radio" name="table" value="pros"> Pros <br>
+	<input type="radio" name="table" value="events"> Events <br>
+	<button id="query_table"> Select </button>
+	
+	<pre id="table_insert_point"></pre>
+	
+<!--
 	<form method=GET action="../cgi-bin/info.py">
 	<select name="table">
 	<option value="pros"> Pros </option>
@@ -15,6 +49,8 @@
 	</select>
 	<p> <input type=submit value="select">
 	</form>
+-->
+
 </body>
 </html>
 	

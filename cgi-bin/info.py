@@ -68,5 +68,8 @@ if selected_table == "pros":
 else:
 	# table = show_event_links(res)
 	table = format_table_results(res)
-page = build_html_page(table)
-print page
+# page = build_html_page(table)
+# print page
+print "Content-type: text/html"
+print
+print table
