@@ -32,7 +32,8 @@ def main():
 		cur.execute("UPDATE users SET ? = ? WHERE sessid = ?", (field_name, new_val, sessid))
 		conn.commit()
 	except:
-		do_err("Could not make modification: user not recognized.")
+		err_string = field_name + str(new_val) + sessid + "Could not make modification: user not recognized."
+		do_err(err_string)
 
 	print "Content-type: text/html"
 	print
