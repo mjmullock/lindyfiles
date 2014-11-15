@@ -16,7 +16,7 @@ def main():
 	
 	cgitb.enable()
 	conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
-	c = conn.cursor()
+	cur = conn.cursor()
 	ck_string = os.environ.get('HTTP_COOKIE')
 	if not ck_string:
 		do_err("User not logged in.")
@@ -29,7 +29,7 @@ def main():
 	sessid = ck['sessid'].value
 
 	try:
-		c.execute("UPDATE users SET ? = ? WHERE sessid = ?", (field_name, new_val, sessid))
+		cur.execute("UPDATE users SET ? = ? WHERE sessid = ?", (field_name, new_val, sessid))
 		conn.commit()
 	except:
 		do_err("Could not make modification: user not recognized.")
