@@ -10,6 +10,7 @@
 	$(document).ready(function() {
 		
 		$("#query_table").click(function() {
+			console.log("Attempting to pull table");
 			$.ajax(
 				{
 					url: "../cgi-bin/info.py",
@@ -19,6 +20,7 @@
 					},
 					dataType: "text",
 					success: function(dat) {
+						console.log("Table successfully pulled");
 						$("#table_insert_point").html(dat);
 					},
 				}
