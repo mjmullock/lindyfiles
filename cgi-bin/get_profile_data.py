@@ -29,7 +29,7 @@ def main():
 		print "Content-type: text/html"
 		print
 		for field in result:
-			print field + '\t'
+			print str(field) + '\t'
 	except:
 		do_err("User not recognized.")
 
