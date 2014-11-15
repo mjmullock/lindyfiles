@@ -1,10 +1,10 @@
 
 def build_html_page(content_line, cookie=None):
 	s = ''
-	s += ("Content-Type: text/html\n\n")
+	s += ("Content-Type: text/html\n")
 	if cookie is not None:
 		s += cookie.output()
-	s += ("\n<html>")
+	s += ("\n\n<html>")
 	s += ("<body>")
 	s += ('<a href="../cgi-bin/home.py">Home</a>\t\t')
 	s += ('<a href="../lindyfiles/message_board.html"> Go to the message board</a>\t\t')

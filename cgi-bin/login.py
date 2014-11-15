@@ -71,7 +71,8 @@ if not len(res):
 		}
 
 		# Build query string, allowing for variable future fields
-		(field_keys, field_values) = fields.items()
+		field_keys = fields.keys()
+		field_values = fields.values()
 		exec_str = "insert into users ("
 		for k in field_keys:
 			exec_str += k
