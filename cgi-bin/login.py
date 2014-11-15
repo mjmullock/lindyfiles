@@ -63,9 +63,9 @@ if not len(res):
 			'email': email,
 			'password': password,
 			'sessid': sessid,
-			'fname': "",
-			'username': "",
-			'picture': "",
+			'fname': ".",
+			'username': ".",
+			'picture': ".",
 			'leader': False,
 			'follower': False
 		}

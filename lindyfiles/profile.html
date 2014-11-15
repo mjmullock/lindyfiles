@@ -15,8 +15,13 @@
                     console.log(dat);
                     var data_array = dat.split("\t");
                     console.log(data_array);
-                    $("#name").html(data_array[0]);
-                    $("#email").html(data_array[1]);
+					$("#username").html(data_array[0]);
+                    $("#fname").html(data_array[1]);
+                    $("#email").html(data_array[2]);
+					$("#password").html(data_array[3]);
+					$("#picture").html(data_array[4]);
+					$("#leader").html(data_array[5]);
+					$("#follower").html(data_array[6]);
                 },
             }
         );
@@ -41,6 +46,11 @@
 				}
 			);
 		};
+
+		$("#submit_username_edit").click(function() {
+			console.log("Attempting to change username...");
+			submit_edit("username");
+		});
 
 		$("#submit_fname_edit").click(function() {
 			submit_edit("fname");
@@ -72,27 +82,31 @@
 <body>
     <h2>Your profile</h2>
 
-	Name: <div id=fname></div>
+	Username: <pre id=username></pre>
+	<input id='edit_username' type='text' name='username'>
+	<button type='button' id=submit_username_edit'>Edit?</button> <p><p>
+
+	Name: <pre id=fname></pre>
 	<input id='edit_fname' type='text' name='fname'>
 	<button type='button' id=submit_fname_edit'>Edit?</button> <p><p>
 
-	Email: <div id=email></div>
+	Email: <pre id=email></pre>
 	<input id='edit_email' type='text' name='email'>
 	<button type='button' id=submit_email_edit'>Edit?</button> <p><p>
 
-	Password: <div id=password></div>
+	Password: <pre id=password></pre>
 	<input id='edit_password' type='text' name='password'>
 	<button type='button' id=submit_password_edit'>Edit?</button> <p><p>
 
-	Picture: <div id=picture></div>
+	Picture: <pre id=picture></pre>
 	<input id='edit_picture' type='text' name='picture'>
 	<button type='button' id=submit_picture_edit'>Edit?</button> <p><p>
 
-	Leader: <div id=leader></div>
+	Leader: <pre id=leader></pre>
 	<input id='edit_leader' type='text' name='leader'>
 	<button type='button' id=submit_leader_edit'>Edit?</button> <p><p>
 
-    Follower: <div id=follower></div> 
+    Follower: <pre id=follower></pre> 
     <input id="edit_follower" type="text" name="follower">
     <button type="button" id=submit_follower_edit>Edit?</button> <p><p>
 </body>

@@ -24,7 +24,7 @@ def main():
 	try:
 		ck = Cookie.SimpleCookie(cookie_string)
 		sessid = ck['sessid'].value
-		c.execute("SELECT (username, password, fname, email, picture, leader, follower) FROM users WHERE sessid = ?", (sessid,))
+		c.execute("SELECT (username, fname, email, password, picture, leader, follower) FROM users WHERE sessid = ?", (sessid,))
 		result = c.fetchone()[0]
 	except:
 		do_err("User not recognized.")
