@@ -75,7 +75,7 @@ if not len(res):
 		field_values = fields.values()
 		exec_str = "insert into users ("
 		for k in xrange(len(field_keys) - 1):
-			exec_str += k + ", "
+			exec_str += field_keys[k] + ", "
 		exec_str += field_keys[len(field_keys)-1] + ") values("
 		for i in xrange(len(field_keys) - 1):
 			exec_str += "?,"
