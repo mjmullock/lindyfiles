@@ -29,7 +29,8 @@ def main():
 	sessid = ck['sessid'].value
 
 	try:
-		cur.execute("UPDATE users SET ? = ? WHERE sessid = ?", (field_name, new_val, sessid))
+		# cur.execute("UPDATE users SET ? = ? WHERE sessid = ?", (field_name, new_val, sessid))
+		cur.execute("UPDATE users SET fn=:field = nv=:val WHERE sessid = sid=:session", {"field": field_name, "val": new_val, "session": sessid})
 		conn.commit()
 	except:
 		err_string = field_name + str(new_val) + sessid + "Could not make modification: user not recognized."
