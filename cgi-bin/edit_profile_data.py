@@ -25,10 +25,18 @@ def main():
 	field_name = form['fieldName'].value
 	new_val = form['newVal'].value
 
+	ck = Cookie.SimpleCookie(cookie_string)
+	sessid = ck['sessid'].value
+
 	try:
-		ck = Cookie.SimpleCookie(cookie_string)
-		sessid = ck['sessid'].value
 		c.execute("UPDATE users SET ? = ? WHERE sessid = ?", (field_name, new_val, sessid))
 		conn.commit()
 	except:
-		do_err("User not recognized.")
+		do_err("Could not make modification: user not recognized.")
+
+	print "Content-type: text/html"
+	print
+	print new_val
+
+if __name__ == '__main__':
+	main()

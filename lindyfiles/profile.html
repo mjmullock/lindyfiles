@@ -3,6 +3,7 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+
         $.ajax(
             {
                 url: "../cgi-bin/get_profile_data.py",
@@ -16,35 +17,81 @@
                     $("#email").html(data_array[1]);
                 },
             }
-        );             
+        );
 
-        $("#submit_name_edit").click(function() {
-            $.ajax(
-                {
-                    url: "../cgi-bin/edit_profile_data.py",
-                    type: "POST",
-                    data: {
-                        fieldName: "name",
-                        newValue: $("$editname")
-                    },
-                    dataType: "text",
-                    success: function() {
-                        $("#name").html($("$editname"))
-                    }
-		}
-            )
-        }); 
+		var submit_edit = function(basename)
+		{
+			var field_string  = "#" + basename;
+			var new_value_string = "$edit_" + basename;
+			$.ajax(
+				{
+					url: "../cgi-bin/edit_profile_data.py",
+					type: "POST",
+					data: {
+						fieldName: basename,
+						newValue: $(new_value_string),
+					}
+					dataType: "text",
+					success: function(dat) {
+						console.log(dat);
+						$(field_string).html(dat);
+					},
+				}
+			);
+		};
+
+		$("#submit_fname_edit").click(function() {
+			submit_edit("fname");
+		};
+
+		$("#submit_email_edit").click(function() {
+			submit_edit("email");
+		};
+
+		$("#submit_password_edit".click(function() {
+			submit_edit("password");
+		};
+
+		$("#submit_picture_edit").click(function() {
+			submit_edit("picture");
+		};
+
+		$("#submit_leader_edit").click(function() {
+			submit_edit("leader");
+		};
+
+		$("#submit_follower_edit").click(function() {
+			submit_edit("follower");
+		};
+
     });
 </script>
 </head>
-<body
-    <h2>Update your profile</h2>
-    <div id=name>Name: </div> 
-    <input id="editname" type="text" name="fname">
-    <button type="button" id=submit_name_edit>Edit?</button>
-    <div id=email>Email: <p></div>
-    <div id=pic>Picture: <p></div>
-    <div id=leader>Leader? <p></div>
-    <div id=follower>Follower? <p></div>
+<body>
+    <h2>Your profile</h2>
+
+	Name: <div id=fname></div>
+	<input id='edit_fname' type='text' name='fname'>
+	<button type='button' id=submit_fname_edit'>Edit?</button>
+
+	Email: <div id=email></div>
+	<input id='edit_email' type='text' name='email'>
+	<button type='button' id=submit_email_edit'>Edit?</button>
+
+	Name: <div id=password></div>
+	<input id='edit_password' type='text' name='password'>
+	<button type='button' id=submit_password_edit'>Edit?</button>
+
+	Name: <div id=picture></div>
+	<input id='edit_picture' type='text' name='picture'>
+	<button type='button' id=submit_picture_edit'>Edit?</button>
+
+	Name: <div id=leader></div>
+	<input id='edit_leader' type='text' name='leader'>
+	<button type='button' id=submit_leader_edit'>Edit?</button>
+
+    <div id=follower>Name: </div> 
+    <input id="edit_follower" type="text" name="follower">
+    <button type="button" id=submit_follower_edit>Edit?</button>
 </body>
 </html>
