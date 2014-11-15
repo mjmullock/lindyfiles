@@ -22,17 +22,17 @@ def main():
 		do_err("User not logged in.")
 
 	try:
-		ck = Cookie.SimpleCookie(cookie_string)
+		ck = Cookie.SimpleCookie(ck_string)
 		sessid = ck['sessid'].value
 		c.execute("SELECT (username, fname, email, password, picture, leader, follower) FROM users WHERE sessid = ?", (sessid,))
-		result = c.fetchone()[0]
+		result = c.fetchone()
+		print "Content-type: text/html"
+		print
+		for field in result:
+			print field + '\t'
 	except:
-		do_err("User not recognized." + ck.output())
+		do_err("User not recognized.")
 
-	print "Content-type: text/html"
-	print
-	for field in result:
-		print field + '\t'
 
 if __name__ == "__main__":
 	main()
