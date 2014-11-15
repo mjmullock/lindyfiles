@@ -23,7 +23,7 @@ def main():
 
 	form = cgi.FieldStorage()
 	field_name = form['fieldName'].value
-	new_val = form['newVal'].value
+	new_val = form['newValue'].value
 
 	ck = Cookie.SimpleCookie(cookie_string)
 	sessid = ck['sessid'].value
