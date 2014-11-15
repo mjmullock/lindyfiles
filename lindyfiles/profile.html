@@ -29,7 +29,7 @@
 		var submit_edit = function(basename)
 		{
 			var field_string  = "#" + basename;
-			var new_value_string = "$" + basename;
+			var new_value_string = "#edit_" + basename;
 			$.ajax(
 				{
 					url: "../cgi-bin/edit_profile_data.py",
