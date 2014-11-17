@@ -8,8 +8,8 @@ import sqlite3
 def tabular(arr):
 	s = ""
 	for i in xrange(len(arr) - 1):
-		s += arr[i] + '\t'
-	s += arr[len(arr)-1]
+		s += str(arr[i]) + '\t'
+	s += str(arr[len(arr)-1])
 	return s
 
 def main():
