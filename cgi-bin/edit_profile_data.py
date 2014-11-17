@@ -16,19 +16,28 @@ def main():
 	
 	cgitb.enable()
 	conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
-	c = conn.cursor()
+	cur = conn.cursor()
 	ck_string = os.environ.get('HTTP_COOKIE')
 	if not ck_string:
 		do_err("User not logged in.")
 
 	form = cgi.FieldStorage()
 	field_name = form['fieldName'].value
-	new_val = form['newVal'].value
+	new_val = form['newValue'].value
+
+	ck = Cookie.SimpleCookie(ck_string)
+	sessid = ck['sessid'].value
 
 	try:
-		ck = Cookie.SimpleCookie(cookie_string)
-		sessid = ck['sessid'].value
-		c.execute("UPDATE users SET ? = ? WHERE sessid = ?", (field_name, new_val, sessid))
+		cur.execute("UPDATE users SET " + str(field_name) + "=? WHERE sessid=?", (new_val, sessid))
 		conn.commit()
-	except:
-		do_err("User not recognized.")
+	except Exception as e:
+		err_string = str(e) + '\t' + field_name + str(new_val) + sessid + "Could not make modification: user not recognized."
+		do_err(err_string)
+
+	print "Content-type: text/html"
+	print
+	print new_val
+
+if __name__ == '__main__':
+	main()

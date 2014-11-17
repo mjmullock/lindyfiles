@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<!-- Allow users to view detailed information about a queried event -->
+
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		var query_string = document.URL.split('?').pop().split('&');
+		var event_queried = query_string[0].split('=')[1];
+		
+		$.ajax(
+			{
+				url: "../cgi-bin/load_event.py",
+				type: "POST",
+				data: {
+					event: event_queried
+				},
+				dataType: "text",
+				success: function(dat) {
+					console.log("Event details found successfully.");
+					var data_array = dat.split('\t');
+					var fields = {}
+					var fieldnames = [
+						"name", "start_date", "end_date", "social_dance",
+						"workshop", "competition", "starting_price",
+						"city", "state", "host", "website"
+					];
+					var i;
+					for (i = 0; i < fieldnames.length; i++) {
+						fields[fieldnames[i]] = data_array[i];
+					}
+					
+					$("#event_name_pt").html(fields["name"]);
+					var location = fields["city"] + ", " + fields["state"];
+					$("#event_location_pt").html(location);
+					$("#event_website_pt").html(fields["website"]);
+				}
+			}
+		);
+	});
+
+</script>
+</head>
+
+<body>
+	<a href="../cgi-bin/home.py"> Home </a>
+	<a href="../lindyfiles/message_board.html"> Message Board </a>
+	<a href="../lindyfiles/profile.html"> Profile </a>
+	
+	<h3> Event Template </h3>
+	<pre id="event_name_pt"></pre>
+	<pre id="event_location_pt"></pre>
+	<pre id="event_website_pt"></pre>
+	
+</body>
+
+</html>

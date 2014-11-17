@@ -13,10 +13,10 @@ import buildLoginForm
 
 def build_html_page(content_line, cookie=None):
 	s = ''
- 	s += ("Content-Type: text/html\n\n")
+ 	s += ("Content-Type: text/html\n")
  	if cookie is not None:
- 		s += cookie.output()
- 	s += ("\n<html>")
+ 		s += cookie.output(sep="\n")
+ 	s += ("\n\n<html>")
  	s += ("<body>")
  	s += ("<p>" + content_line + "\n")
  	s += ("</body>")
@@ -59,12 +59,37 @@ res = c.fetchall()
 if not len(res):
 	if signup_type == 'register':
 		sessid = str(uuid.uuid4())
-		c.execute("insert into users (email, password, sessid) values(?,?,?);", (email, password, sessid))
+		fields = {
+			'email': email,
+			'password': password,
+			'sessid': sessid,
+			'fname': ".",
+			'username': ".",
+			'picture': ".",
+			'leader': False,
+			'follower': False
+		}
+
+		# Build query string, allowing for variable future fields
+		field_keys = fields.keys()
+		field_values = fields.values()
+		exec_str = "insert into users ("
+		for k in xrange(len(field_keys) - 1):
+			exec_str += field_keys[k] + ", "
+		exec_str += field_keys[len(field_keys)-1] + ") values("
+		for i in xrange(len(field_keys) - 1):
+			exec_str += "?,"
+		exec_str += "?);"
+
+		# Add new user to the database
+		c.execute(exec_str, tuple(field_values))
 		conn.commit()
+
+		# c.execute("insert into users (email, password, sessid) values(?,?,?);", (email, password, sessid))
+		# conn.commit()
 	 	cookie = Cookie.SimpleCookie()
 	 	cookie['sessid'] = sessid
 		expiration = datetime.datetime.now() + datetime.timedelta(days=30)
-		#cookie['sessid']['expires'] = 'Sun, 23 Nov 2014 00:00:01 GMT'
 		cookie['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
 	 	page = build_html_page("Welcome!", cookie)
 		#home()

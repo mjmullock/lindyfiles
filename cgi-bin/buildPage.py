@@ -1,14 +1,15 @@
 
 def build_html_page(content_line, cookie=None):
 	s = ''
-	s += ("Content-Type: text/html\n\n")
+	s += ("Content-Type: text/html\n")
 	if cookie is not None:
 		s += cookie.output()
-	s += ("\n<html>")
+	s += ("\n\n<html>")
 	s += ("<body>")
 	s += ('<a href="../cgi-bin/home.py">Home</a>\t\t')
 	s += ('<a href="../lindyfiles/message_board.html"> Go to the message board</a>\t\t')
-	s += ('<a href="../cgi-bin/displayInfo.py"> View information</a>\n')	
+	s += ('<a href="../lindyfiles/profile.html"> Profile</a>\t\t')
+	s += ('<a href="../lindyfiles/query_screen.html"> View information</a>\n')	
 	s += ("<p>" + content_line + "\n")
 	s += ("<FORM METHOD=GET ACTION='./login.py'>\n")
 	s += ("<input type='hidden' name='signup_type' value='logout'>\n")
