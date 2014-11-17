@@ -25,6 +25,6 @@ def main():
 	cur.execute("SELECT * from events where id=?", (eventID,))
 	res = cur.fetchone()
 	print tabular(res)
-	
+
 if __name__ == "__main__":
 	main()
