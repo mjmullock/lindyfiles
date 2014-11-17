@@ -28,7 +28,8 @@ CREATE TABLE pros (
 
 DROP TABLE IF EXISTS events;
 CREATE TABLE events (
-    name            VARCHAR(100),
+    id              MEDIUMINT NOT NULL AUTO_INCREMENT,
+    name            VARCHAR(100) NOT NULL,
     start_date		DATE,
     end_date		DATE,
     social_dance    BOOLEAN,
