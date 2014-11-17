@@ -54,8 +54,8 @@ def show_event_links(res):
 		name = str(row[1])
 		if name == "Event Name":
 			continue
-		t += "<a href='../cgi-bin/load_event.py?eventID=" + eventID + "'> " + name + " </a>"
-		t += "</tr> \n"
+		t += "<a href='../lindyfiles/event_template.html?eventID=" + eventID + "'> " + name + " </a>"
+		t += "</tr> <p> \n"
 	t += "</table>"
 	return t
 
