@@ -51,7 +51,9 @@ def show_event_links(res):
 	for row in res:
 		t += "<tr>"
 		eventID = str(row[0])
-		name = str(row[1]);
+		name = str(row[1])
+		if name == "Event Name":
+			continue
 		t += "<a href='../cgi-bin/load_event.py?eventID=" + eventID + "> " + name + " </a>"
 		t += "</tr> \n"
 	t += "</table>"
