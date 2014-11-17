@@ -16,7 +16,7 @@ def main():
 	cgitb.enable()
 	form = cgi.FieldStorage()
 	try:
-		eventID = form['event'].value
+		eventID = int(form['event'].value)
 	except KeyError:
 		eventID = 2
 	
