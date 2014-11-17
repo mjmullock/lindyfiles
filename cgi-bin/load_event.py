@@ -24,10 +24,13 @@ def main():
 	cur = conn.cursor()
 	cur.execute("SELECT * from events where id=?", (eventID,))
 	res = cur.fetchone()
+	cur.close()
+	conn.close()
 	
 	print "Content-type: text/html"
 	print
-	print tabular(res)
+	print "a\tb\tc\td\te\tf\tg\th\ti\tj"
+	# print tabular(res)
 
 if __name__ == "__main__":
 	main()
