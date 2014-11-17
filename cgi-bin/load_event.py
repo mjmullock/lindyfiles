@@ -15,15 +15,18 @@ def tabular(arr):
 def main():
 	cgitb.enable()
 	form = cgi.FieldStorage()
-	#try:
-	#	eventID = int(form['event'].value)
-	#except KeyError:
+	try:
+		eventID = int(form['event'].value)
+	except KeyError:
 	eventID = 2
 	
 	conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 	cur = conn.cursor()
 	cur.execute("SELECT * from events where id=?", (eventID,))
 	res = cur.fetchone()
+	
+	print "Content-type: text/html"
+	print
 	print tabular(res)
 
 if __name__ == "__main__":
