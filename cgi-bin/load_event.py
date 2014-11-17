@@ -15,10 +15,10 @@ def tabular(arr):
 def main():
 	cgitb.enable()
 	form = cgi.FieldStorage()
-	try:
-		eventID = int(form['event'].value)
-	except KeyError:
-		eventID = 2
+	#try:
+	#	eventID = int(form['event'].value)
+	#except KeyError:
+	eventID = 2
 	
 	conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 	cur = conn.cursor()
