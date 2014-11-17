@@ -20,6 +20,11 @@ def main():
 	except KeyError:
 	eventID = 2
 	
+	print "Content-type: text/html"
+	print
+	print "a\tb\tc\td\te\tf\tg\th\ti\tj"
+	exit(0)
+	
 	conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 	cur = conn.cursor()
 	cur.execute("SELECT * from events where id=?", (eventID,))
@@ -27,9 +32,9 @@ def main():
 	cur.close()
 	conn.close()
 	
-	print "Content-type: text/html"
-	print
-	print "a\tb\tc\td\te\tf\tg\th\ti\tj"
+	#print "Content-type: text/html"
+	#print
+	#print "a\tb\tc\td\te\tf\tg\th\ti\tj"
 	# print tabular(res)
 
 if __name__ == "__main__":
