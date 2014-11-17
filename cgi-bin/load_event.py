@@ -18,12 +18,7 @@ def main():
 	try:
 		eventID = int(form['event'].value)
 	except KeyError:
-	eventID = 2
-	
-	print "Content-type: text/html"
-	print
-	print "a\tb\tc\td\te\tf\tg\th\ti\tj"
-	exit(0)
+		eventID = 2
 	
 	conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 	cur = conn.cursor()
@@ -32,10 +27,9 @@ def main():
 	cur.close()
 	conn.close()
 	
-	#print "Content-type: text/html"
-	#print
-	#print "a\tb\tc\td\te\tf\tg\th\ti\tj"
-	# print tabular(res)
+	print "Content-type: text/html"
+	print
+	print tabular(res)
 
 if __name__ == "__main__":
 	main()
