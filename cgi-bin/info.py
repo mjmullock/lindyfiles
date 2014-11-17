@@ -50,8 +50,9 @@ def show_event_links(res):
 	t = '<table style="width:100%">' + '\n'
 	for row in res:
 		t += "<tr>"
-		name = str(row[0])
-		t += "<a href='../cgi-bin/load_event.py?eventName=" + name + "> " + name + " </a>"
+		eventID = str(row[0])
+		name = str(row[1]);
+		t += "<a href='../cgi-bin/load_event.py?eventID=" + eventID + "> " + name + " </a>"
 		t += "</tr> \n"
 	t += "</table>"
 	return t
@@ -66,8 +67,8 @@ res = retrieve_all_results_from_table(selected_table)
 if selected_table == "pros":
 	table = format_table_results(res)
 else:
-	# table = show_event_links(res)
-	table = format_table_results(res)
+	table = show_event_links(res)
+	# table = format_table_results(res)
 # page = build_html_page(table)
 # print page
 print "Content-type: text/html"
