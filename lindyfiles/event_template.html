@@ -21,6 +21,7 @@
 				dataType: "text",
 				success: function(dat) {
 					console.log("Event details found successfully.");
+					console.log(dat);
 					var data_array = dat.split('\t');
 					var fields = {}
 					var fieldnames = [
@@ -52,8 +53,8 @@
 	<a href="../lindyfiles/profile.html"> Profile </a>
 	
 	<h3> Event Template </h3>
-	<pre id="event_name_pt"></pre>
-	<pre id="event_location_pt"></pre>
+	<pre id="event_name_pt"></pre> <p>
+	<pre id="event_location_pt"></pre><p>
 	<pre id="event_website_pt"></pre>
 	
 </body>
