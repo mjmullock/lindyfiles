@@ -39,6 +39,9 @@
 					var location = fields["city"] + ", " + fields["state"];
 					$("#event_location_pt").html(location);
 					$("#event_website_pt").html(fields["website"]);
+					$("#social_pt").html(fields["social"]);
+					$("#workshop_pt").html(fields["workshop"]);
+					$("#competition_pt").html(fields["competition"]);
 				}
 			}
 		);
@@ -53,9 +56,14 @@
 	<a href="../lindyfiles/profile.html"> Profile </a>
 	
 	<h3> Event Template </h3>
-	<pre id="event_name_pt"></pre> <p>
-	<pre id="event_location_pt"></pre><p>
-	<pre id="event_website_pt"></pre>
+	<pre id="event_name_pt"></pre> <br>
+	<pre id="event_location_pt"></pre> <br>
+	<pre id="event_website_pt"></pre> <br>
+	Social dance? <pre id="social_pt"></pre> <br>
+	Workshop? <pre id="workshop_pt"></pre> <br>
+	Competition? <pre id="competition_pt"></pre> <br>
+	Attendees: <pre id="attending_pt"></pre> <br>
+	<button id="add_attending"> I'm going! </button>
 	
 </body>
 
