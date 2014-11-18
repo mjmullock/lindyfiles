@@ -1,9 +1,30 @@
 <!DOCTYPE html> 
 
-<!-- BLAH -->
-
 <html> 
 <body>
+	
+	<form method=GET action="../cgi-bin/login.py">
+	<input name="name" size=10 maxlength=15 value="email">
+	<input name="password" size=10 maxlength=15 value="password">
+	<input type="hidden" name="signup_type" value="login">
+	<p>
+		<input type=submit value="login">
+	</form>
+	
+	<br>
+	
+	New user?
+	<form method=GET action="../cgi-bin/login.py">
+	<input name="name" size=10 maxlength=15 value="email">
+	<input name="password" size=10 maxlength=15 value="password">
+	<input type="hidden" name="signup_type" value="register">
+	<p>
+		<input type=submit value="sign up">
+	</form>
+	
+	<img src="../logo.png" alt="LindyFiles logo">
+	
+<!--
     <h1>If this is your first time on the site please sign up with your name and password</h1>
     <FORM METHOD=GET ACTION="../cgi-bin/login.py">
         name: <input name="name" size=10 maxlength=15>
@@ -21,5 +42,7 @@
         <INPUT TYPE=submit value="login">
 
     </FORM> 
+-->
+
 </body>
 </html>
