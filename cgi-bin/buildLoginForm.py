@@ -1,10 +1,10 @@
 
 def build_login_form(message, cookie=None):
 	s = ''
-	s += ("Content-Type: text/html\n\n")
+	s += ("Content-Type: text/html\n")
 	if cookie is not None:
 		s += cookie.output()
-	s += ("\n<html>\n")
+	s += ("\n\n<html>\n")
 	s += ("<body>\n")
 	s += ("<p style='color:red'>" + message + "</p>")
 	s += ("If this is your first time on the site please sign up with your email and password\n")
