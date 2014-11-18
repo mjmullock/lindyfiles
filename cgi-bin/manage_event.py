@@ -22,7 +22,7 @@ def main():
 	else:
 		res = ""
 		
-	sessid = cookie["sessid"]
+	sessid = str(cookie["sessid"])
 	cur.execute("select email from users where sessid=?", (sessid,))
 	email = cur.fetchone()
 	res += str(email)
