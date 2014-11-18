@@ -39,12 +39,26 @@
 					var location = fields["city"] + ", " + fields["state"];
 					$("#event_location_pt").html(location);
 					$("#event_website_pt").html(fields["website"]);
-					$("#social_pt").html(fields["social"]);
+					$("#social_pt").html(fields["social_dance"]);
 					$("#workshop_pt").html(fields["workshop"]);
 					$("#competition_pt").html(fields["competition"]);
 				}
 			}
 		);
+		
+		$("add_attending").click(function() {
+			$.ajax(
+				{
+					url: "../cgi-bin/manage_event.py?eventID=" + event_queried,
+					type: "POST",
+					dataType: "text",
+					success: function(dat) {
+						console.log("Successfully added attendee");
+						$("#attending_pt").html(dat);
+					}
+				}
+			);
+		});
 	});
 
 </script>
@@ -59,10 +73,10 @@
 	<pre id="event_name_pt"></pre> <br>
 	<pre id="event_location_pt"></pre> <br>
 	<pre id="event_website_pt"></pre> <br>
-	Social dance? <pre id="social_pt"></pre> <br>
-	Workshop? <pre id="workshop_pt"></pre> <br>
-	Competition? <pre id="competition_pt"></pre> <br>
-	Attendees: <pre id="attending_pt"></pre> <br>
+	Social dance? <div id="social_pt"></div> <br>
+	Workshop? <div id="workshop_pt"></div> <br>
+	Competition? <div id="competition_pt"></div> <br>
+	Current attendees: <pre id="attending_pt"></pre> <br>
 	<button id="add_attending"> I'm going! </button>
 	
 </body>
