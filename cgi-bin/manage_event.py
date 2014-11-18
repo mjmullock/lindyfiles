@@ -3,6 +3,7 @@
 import cgi
 import cgitb
 import sqlite3
+import Cookie
 import os
 
 def main():
