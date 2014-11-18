@@ -14,7 +14,10 @@ def main():
 	conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
 	cur = conn.cursor()
 	form = cgi.FieldStorage()
-	eventID = form['eventID'].value
+	try:
+		eventID = form['eventID'].value
+	except KeyError:
+		eventID = 2
 	
 	if attendees_implemented:
 		cur.execute("select attendees from events where id=?", (eventID,))
