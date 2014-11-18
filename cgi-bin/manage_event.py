@@ -23,7 +23,7 @@ def main():
 		cur.execute("select attendees from events where id=?", (eventID,))
 		res = str(cur.fetchone())
 	else:
-		res = "test"
+		res = ""
 		
 	sessid = str(cookie["sessid"])
 	cur.execute("select email from users where sessid=?", (sessid,))
