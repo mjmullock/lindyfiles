@@ -31,25 +31,32 @@ def get_nearby_events(city, region):
 
 	cur.execute("SELECT latitude, longitude FROM CITIES WHERE UPPER(city) = UPPER(?) AND UPPER(region) = UPPER(?)", (city, region))
 	res = cur.fetchall()
+    
+    lat = res[0][0]
+    long = res[0][1]
 
-	lats = []
-	longs = []	
+#	lats = []
+#	longs = []	
 
-	for r in res:
-		lats.append(r[0])
-		longs.append(r[1])
-
-	mean_lat = sum(lats)/float(len(lats))
-	mean_long = sum(longs)/float(len(longs))	
+#	for r in res:
+#		lats.append(r[0])
+#		longs.append(r[1])
+#
+#	mean_lat = sum(lats)/float(len(lats))
+#	mean_long = sum(longs)/float(len(longs))	
 
 	conn.create_function("geocalc", 4, geocalc)
 
 	# select all events whose location is within 50 miles of the given city
 	query = '''
+            with lat as (select latitude from cities where cities.city = events.city and cities.region = events.state)
+            long as (select longitude from cities where cities.city = events.city and cities.region = events.state)
 			select name, start_date, id
 			from events
-			having 	
-'''	
+			having geocalc(lat, long, ?, ?) <= 50	
+            '''	
+
+    cur.execute(query, (lat, long))
 
 	cur.close()
 	conn.close()
