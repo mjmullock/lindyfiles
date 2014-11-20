@@ -11,12 +11,15 @@ import datetime
 import buildLoginForm
 #import home
 
-def build_html_page(content_line, cookie=None):
+def redirect(content_line, cookie=None):
 	s = ''
  	s += ("Content-Type: text/html\n")
  	if cookie is not None:
  		s += cookie.output(sep="\n")
  	s += ("\n\n<html>")
+	s += ("\n<head>")
+	s += ("<meta http-equiv="refresh" content="0; url=http://www.lindyfiles.com/cgi-bin/home.py" />")
+	s += ("</head>")
  	s += ("<body>")
  	s += ("<p>" + content_line + "\n")
  	s += ("</body>")
@@ -92,7 +95,7 @@ if not len(res):
 		expiration = datetime.datetime.now() + datetime.timedelta(days=30)
 		cookie['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
 	 	page = build_html_page("Welcome!", cookie)
-		#home()
+		#want to print cookie to browser and redirect to home.html
 	else:
 		page = buildLoginForm.build_login_form("Sorry, user " + email + " not found.")
 		
@@ -112,6 +115,7 @@ else:
 			c.execute("update users set sessid = ? where email = ?", (sessid, email))
 			conn.commit()
 			page = build_html_page("Welcome back, " + email + ".", cookie=ck)
+			#want to print cookie to browser and redirect to home.html
 		else:
 			page = buildLoginForm.build_login_form("Login error: incorrect password entered.")
 
