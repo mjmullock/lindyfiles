@@ -12,8 +12,6 @@ import buildLoginForm
 
 cgitb.enable()
 
-#Have it call build_home_page if there's a cookie, also have a cookie passed in, build_login_page if there's not
-
 
 # create database connection
 conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
@@ -33,7 +31,7 @@ if cookie_string:
 		cur.execute("SELECT email FROM users WHERE sessid = ?", (sessid,)) 
 		results = cur.fetchone()
 		email = results[0]
-		buildPage.build_html_page("Welcome back, " + email)
+		print buildPage.build_html_page("Welcome back, " + email)
 		
 	except:
 		# print buildPage.build_html_page("Cookie found but user not found. sessid = " + cookie["sessid"].value)
