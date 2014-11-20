@@ -18,7 +18,7 @@ def redirect(content_line, cookie=None):
  		s += cookie.output(sep="\n")
  	s += ("\n\n<html>")
 	s += ("\n<head>")
-	s += ("<meta http-equiv='refresh' content='0'; url='http://www.lindyfiles.com/' />")
+	s += ("<meta http-equiv='refresh' content='0; url=http://www.lindyfiles.com/' />")
 	s += ("</head>")
  	s += ("<body>")
  	s += ("<p>" + content_line + "\n")
