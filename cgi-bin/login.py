@@ -94,7 +94,7 @@ if not len(res):
 	 	cookie['sessid'] = sessid
 		expiration = datetime.datetime.now() + datetime.timedelta(days=30)
 		cookie['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
-	 	page = build_html_page("Welcome!", cookie)
+	 	page = redirect("Welcome!", cookie)
 		#want to print cookie to browser and redirect to home.html
 	else:
 		page = buildLoginForm.build_login_form("Sorry, user " + email + " not found.")
@@ -114,7 +114,7 @@ else:
 			ck['sessid']['expires'] = expiration.strftime("%a, %d %b %Y %H:%M:%S GMT")
 			c.execute("update users set sessid = ? where email = ?", (sessid, email))
 			conn.commit()
-			page = build_html_page("Welcome back, " + email + ".", cookie=ck)
+			page = redirect("Welcome back, " + email + ".", cookie=ck)
 			#want to print cookie to browser and redirect to home.html
 		else:
 			page = buildLoginForm.build_login_form("Login error: incorrect password entered.")
