@@ -32,8 +32,8 @@ def get_nearby_events(city, region):
 	cur.execute("SELECT latitude, longitude FROM CITIES WHERE UPPER(city) = UPPER(?) AND UPPER(region) = UPPER(?)", (city, region))
 	res = cur.fetchall()
     
-    lat = res[0][0]
-    long = res[0][1]
+	lat = res[0][0]
+	long = res[0][1]
 
 #	lats = []
 #	longs = []	
@@ -46,22 +46,45 @@ def get_nearby_events(city, region):
 #	mean_long = sum(longs)/float(len(longs))	
 
 	conn.create_function("geocalc", 4, geocalc)
-
+	
 	# select all events whose location is within 50 miles of the given city
 	query = '''
-            with lat as (select latitude from cities where cities.city = events.city and cities.region = events.state)
-            long as (select longitude from cities where cities.city = events.city and cities.region = events.state)
-			select name, start_date, id
+			select distinct name, start_date, id 
 			from events
-			having geocalc(lat, long, ?, ?) <= 50	
-            '''	
+			inner join
+			cities
+			on events.city = cities.city and events.state = cities.region
+			where geocalc(?, ?, cities.latitude, cities.longitude) <= 50	
+			'''	
 
-    cur.execute(query, (lat, long))
+#				cities.postalCode = 
+#				(select postalCode 
+#				from cities
+#				where cities.city = ? 
+#				and cities.region = ? 
+#				limit 1)
+#			'''
+#			select name, start_date, id, latitude, longitude
+#			from events
+#			inner join
+#				(select city, region, latitude, longitude 
+#				from cities) as tbl
+#			on events.city = tbl.city and events.state = tbl.region 
+#			'''
+
+#			select name, start_date, id
+#			from events
+#			where geocalc((select latitude from cities where cities.city = events.city and cities.region = events.state), select from cities where cities.city = events.city and cities.region = events.state, ?, ?) <= 50	
+           # '''	
+
+	cur.execute(query, (lat, long))
+	res = cur.fetchall()
+	print res
 
 	cur.close()
 	conn.close()
 
-get_nearby_events('Rochester', 'NY')
+get_nearby_events('Austin', 'TX')
 
 # get upcoming events
 def get_upcoming_events():
