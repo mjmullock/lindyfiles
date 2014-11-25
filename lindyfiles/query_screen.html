@@ -14,23 +14,31 @@
 	
 		$("#nearby_button").click(function() {	
 			if (nearby == false) {
-				console.log("nearby_button clicked");
 				var loc = "<br>City: <input type='text' name='city' id='cty_field' size=15 maxlength=50>" + 
 				"State: <input type='text' name='state' id='state_field' size=2 maxlength=2>";
 				$("#nearby_events").after(loc);
+				nearby = true;
 			}
 		});
 
 		$("#query_table").click(function() {
 			console.log("Attempting to pull table");
 			var table_name = $('input[name="table"]:checked').val();
+			if($("#cty_field").length) {
+				var city_name = $("#cty_field").val();
+			} else var city_name = "";
+			if($("#state_field").length) {
+				var state_name = $("#state_field").val();
+			} else var state_name = "";
 			console.log(table_name);
 			$.ajax(
 				{
 					url: "../cgi-bin/info.py",
 					type: "POST",
 					data: {
-						table: table_name
+						table: table_name,
+						city: city_name,
+						state: state_name 
 					},
 					dataType: "text",
 					success: function(dat) {
