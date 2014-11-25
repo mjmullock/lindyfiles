@@ -53,15 +53,14 @@ def get_nearby_events(city, region):
             long as (select longitude from cities where cities.city = events.city and cities.region = events.state)
 			select name, start_date, id
 			from events
-			having geocalc(lat, long, ?, ?) <= 50	
+            having geocalc(lat, long, ?, ?) <= 50	
             '''	
 
     cur.execute(query, (lat, long))
-
+    res = cur.fetchall()
+    return res
 	cur.close()
 	conn.close()
-
-get_nearby_events('Rochester', 'NY')
 
 # get upcoming events
 def get_upcoming_events():
@@ -76,7 +75,7 @@ def get_upcoming_events():
 	future = future.strftime(format)
 	cur.execute("SELECT * FROM EVENTS WHERE start_date BETWEEN ? AND ?", (today, future))		 
 	res = cur.fetchall()
-	print res
+	return res
 
 	cur.close()
 	conn.close()

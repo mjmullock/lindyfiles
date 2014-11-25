@@ -3,6 +3,8 @@
 import cgi
 import cgitb
 import sqlite3
+from queries.py import get_nearby_events
+from queries.py import get_upcoming_events
 
 def build_html_page(content_line, cookie=None):
 	s = ''
@@ -59,17 +61,21 @@ def show_event_links(res):
 	t += "</table>"
 	return t
 
-
 cgitb.enable()
 
 form = cgi.FieldStorage()
 selected_table = form['table'].value
 
-res = retrieve_all_results_from_table(selected_table)
 if selected_table == "pros":
+    res = retrieve_all_results_from_table(selected_table)
 	table = format_table_results(res)
-else:
+elif selected_table == "all_events":
+    res = retrieve_all_results_from_table(selected_table)
 	table = show_event_links(res)
+elif selected_table == "nearby_events":
+    table = format_table_results(get_nearby_events())
+elif selected_table == "upcoming_events":
+    table = format_table_results(get_upcoming_events()) 
 	# table = format_table_results(res)
 # page = build_html_page(table)
 # print page
