@@ -30,11 +30,10 @@ def get_nearby_events(city, region):
 	cur = conn.cursor()
 
 	cur.execute("SELECT latitude, longitude FROM CITIES WHERE UPPER(city) = UPPER(?) AND UPPER(region) = UPPER(?)", (city, region))
-	res = cur.fetchall()
-    
-    lat = res[0][0]
-    long = res[0][1]
-
+	res = cur.fetchone()
+	lat = res[0]
+	long = res[1]
+	dist = 50
 #	lats = []
 #	longs = []	
 
@@ -46,21 +45,55 @@ def get_nearby_events(city, region):
 #	mean_long = sum(longs)/float(len(longs))	
 
 	conn.create_function("geocalc", 4, geocalc)
+	
+	delete_temp = "drop table if exists temp"
+	cur.execute(delete_temp)
 
-	# select all events whose location is within 50 miles of the given city
+	# select all cities near a given city
 	query = '''
-            with lat as (select latitude from cities where cities.city = events.city and cities.region = events.state)
-            long as (select longitude from cities where cities.city = events.city and cities.region = events.state)
-			select name, start_date, id
-			from events
-            having geocalc(lat, long, ?, ?) <= 50	
-            '''	
+			create table temp as
+			select id
+			from cities
+			group by id
+			having geocalc(latitude, longitude, ?, ?) <= ?
+			order by id
+			'''
+	cur.execute(query, (lat, long, dist))
+	#res = cur.fetchall()
+	#nearby_locs = []
+	#for r in res:
+	#	nearby_locs.append(r)	
 
-    cur.execute(query, (lat, long))
-    res = cur.fetchall()
-    return res
+	#list = [i[0] for i in nearby_locs]
+	#print list
+
+	query = '''
+			select *
+			from events
+			where (select id from cities where city = events.city and region = events.state) 
+			in (select * from temp) 
+			'''	
+
+	cur.execute(query)
+	res = cur.fetchall()
+	delete_temp = "drop table if exists temp"
+	cur.execute(delete_temp)
+	return res
+	# select all events whose location is within 50 miles of the given city
+	#query = '''
+	#		with lat as (select latitude from cities where cities.city = events.city and cities.region = events.state)
+	#		long as (select longitude from cities where cities.city = events.city and cities.region = events.state)
+	#		select name, start_date, id
+	#		from events
+	#		having geocalc(lat, long, ?, ?) <= 50	
+	#		'''	
+
+	#cur.execute(query, (lat, long))
+	#res = cur.fetchall()
+	#return res
 	cur.close()
 	conn.close()
+
 
 # get upcoming events
 def get_upcoming_events():
@@ -70,8 +103,8 @@ def get_upcoming_events():
 
 	format = "%Y-%m-%d"
 	today = datetime.datetime.today()
-	today = today.strftime(format)
 	future = today + datetime.timedelta(days=30)
+	today = today.strftime(format)
 	future = future.strftime(format)
 	cur.execute("SELECT * FROM EVENTS WHERE start_date BETWEEN ? AND ?", (today, future))		 
 	res = cur.fetchall()
@@ -79,3 +112,5 @@ def get_upcoming_events():
 
 	cur.close()
 	conn.close()
+
+print get_upcoming_events()
