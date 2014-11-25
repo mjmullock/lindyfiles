@@ -113,4 +113,3 @@ def get_upcoming_events():
 	cur.close()
 	conn.close()
 
-print get_upcoming_events()

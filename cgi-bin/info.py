@@ -65,9 +65,9 @@ cgitb.enable()
 
 form = cgi.FieldStorage()
 selected_table = form['table'].value
-#if selected_table == 'upcoming_events':
-city = form['city'].value
-state = form['state'].value
+if selected_table == 'nearby_events':
+	city = form['city'].value
+	state = form['state'].value
 
 if selected_table == "pros":
 	res = retrieve_all_results_from_table(selected_table)
