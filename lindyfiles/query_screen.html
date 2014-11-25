@@ -8,7 +8,19 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		
+
+		var city, state;
+		var nearby = false; //check for whether user has already clicked the nearby events button
+	
+		$("#nearby_button").click(function() {	
+			if (nearby == false) {
+				console.log("nearby_button clicked");
+				var loc = "<br>City: <input type='text' name='city' id='cty_field' size=15 maxlength=50>" + 
+				"State: <input type='text' name='state' id='state_field' size=2 maxlength=2>";
+				$("#nearby_events").after(loc);
+			}
+		});
+
 		$("#query_table").click(function() {
 			console.log("Attempting to pull table");
 			var table_name = $('input[name="table"]:checked').val();
@@ -41,7 +53,7 @@
 	
 	<input type="radio" name="table" value="pros"> Pros <br>
 	<input type="radio" name="table" value="all_events"> All events <br>
-    <input type="radio" name="table" value="nearby_events"> Nearby events <br>
+    <input type="radio" name="table" id='nearby_button' value="nearby_events"> <span id='nearby_events'> Nearby events </span><br>
     <input type="radio" name="table" value="upcoming_events"> Upcoming events <br>
 	<button id="query_table"> Select </button>
 	
