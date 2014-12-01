@@ -14,6 +14,8 @@ def do_err():
 	exit(1)
 
 def add_message(msg, email, board):
+	if board is None:
+		board = ''
 	board += msg + '\t' + email + '\t' + str(datetime.now()) + '\n'
 	return board
 
