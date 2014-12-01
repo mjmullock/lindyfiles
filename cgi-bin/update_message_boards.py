@@ -27,8 +27,14 @@ def read_messages(board):
 		for line in board:
 			if line is None or line == '':
 				continue
-			line = line.split('\t')
-			s += '(' + line[2].strip() + ') ' + line[1] + ':\t' + line[0] + '\n'
+			try:
+				line = line.split('\t')
+				s += '(' + line[2].strip() + ') ' + line[1] + ':\t' + line[0] + '\n'
+			except IndexError:
+				print "Content-type: text/html"
+				print
+				print "Error" + str(line)
+				exit(1)
 	return s
 
 cgitb.enable()
