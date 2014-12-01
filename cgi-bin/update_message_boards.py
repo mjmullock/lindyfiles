@@ -38,7 +38,7 @@ form = cgi.FieldStorage()
 if not update:
 	print "Content-type: text/html"
 	print
-	print read_message()
+	print read_messages()
 	exit(0)
 
 conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
