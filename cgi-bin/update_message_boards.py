@@ -35,14 +35,16 @@ form = cgi.FieldStorage()
 	form['new_message'].value,
 	int(form['update'].value)
 )
+conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
+cur = conn.cursor()
+cur.execute("SELECT msg_brd FROM events WHERE id = ?", (event,))
+board = cur.fetchone()[0]
+
 if not update:
 	print "Content-type: text/html"
 	print
-	print read_messages()
+	print read_messages(board)
 	exit(0)
-
-conn = sqlite3.connect('/home2/mmullock/public_html/lindyfiles/lindyfiles.db')
-cur = conn.cursor()
 
 cookie_string = os.environ.get('HTTP_COOKIE')
 if not cookie_string:
@@ -55,12 +57,10 @@ try:
 	email = results[0]
 except:
 	do_err()
-	
-cur.execute("SELECT msg_brd FROM events WHERE id = ?", (event,))
-board = cur.fetchone()[0]
+
 board = add_msg(new_message, email, board)
 cur.execute("UPDATE TABLE events SET msg_brd = ? WHERE id = ?", (board, event))
 
 print "Content-type: text/html"
 print
-print read_messages()
+print read_messages(board)
