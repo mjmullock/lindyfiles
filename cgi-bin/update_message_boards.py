@@ -25,6 +25,8 @@ def read_messages(board):
 		s = "No messages yet!"
 	else:
 		for line in board:
+			if line is None or line == '':
+				continue
 			line = line.split('\t')
 			s += '(' + line[2].strip() + ') ' + line[1] + ':\t' + line[0] + '\n'
 	return s
