@@ -17,7 +17,15 @@ def add_message(msg, email, board):
 	board += msg + '\t' + email + '\t' + str(datetime.now()) + '\n'
 	return board
 
-def read_messages(board)
+def read_messages(board):
+	s = ''
+	if board is None or board = '':
+		s = "No messages yet!"
+	else:
+		for line in board:
+			line = line.split('\t')
+				s += '(' + line[2].strip() + ') ' + line[1] + ':\t' + line[0] + '\n'
+	return s
 
 cgitb.enable()
 form = cgi.FieldStorage()
