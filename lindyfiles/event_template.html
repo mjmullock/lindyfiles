@@ -28,7 +28,7 @@
 						"id", "name", "start_date", "end_date",
 						"social_dance", "workshop", "competition",
 						"starting_price", "city", "state",
-						"host", "website"
+						"host", "website", "message_board"
 					];
 					var i;
 					for (i = 0; i < fieldnames.length; i++) {
@@ -43,9 +43,29 @@
 					$("#workshop_pt").html(fields["workshop"]);
 					$("#competition_pt").html(fields["competition"]);
 					$("#starting_price_pt").html(fields["starting_price"]);
+					
+					$("#message_board_pt").html(fields["message_board"]);
 				}
 			}
 		);
+		
+		setInterval(function() {
+			$.ajax(
+				{
+					url: "../cgi-bin/update_message_boards.py",
+					type: "POST",
+					data: {
+						event: event_queried,
+						new_message: 0,
+						update: 0
+					},
+					dataType: "text",
+					success: function(dat) {
+						$("#message_board_pt").html(dat);
+					},
+				}
+			);
+		});
 		
 		$("#add_attending").click(function() {
 			$.ajax(
@@ -57,6 +77,25 @@
 						console.log("Successfully added attendee");
 						$("#attending_pt").html(dat);
 					}
+				}
+			);
+		});
+		
+		$("#add_message").click(function() {
+			$.ajax(
+				{
+					url: "../cgi-bin/update_message_boards.py",
+					type: "POST",
+					data: {
+						event: event_queried,
+						new_message: $("#message").val(),
+						update: 1
+					},
+					
+					dataType: "text",
+					success: function(dat) {
+						$("#message_insert_point").html(dat);
+					},
 				}
 			);
 		});
@@ -80,6 +119,10 @@
 	Prices start from $<div id="starting_price_pt"></div> <br>
 	Current attendees: <pre id="attending_pt"></pre> <br>
 	<button id="add_attending"> I'm going! </button>
+	
+	Discussion: <pre id="message_board_pt"></pre> <br>
+	<input type="text" id="message"/>
+	<button id="add_message"> Add your thoughts! </button>	
 	
 </body>
 
