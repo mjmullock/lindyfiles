@@ -19,12 +19,12 @@ def add_message(msg, email, board):
 
 def read_messages(board):
 	s = ''
-	if board is None or board = '':
+	if board is None or board == '':
 		s = "No messages yet!"
 	else:
 		for line in board:
 			line = line.split('\t')
-				s += '(' + line[2].strip() + ') ' + line[1] + ':\t' + line[0] + '\n'
+			s += '(' + line[2].strip() + ') ' + line[1] + ':\t' + line[0] + '\n'
 	return s
 
 cgitb.enable()
