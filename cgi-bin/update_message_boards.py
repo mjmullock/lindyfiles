@@ -61,7 +61,7 @@ except:
 	do_err()
 
 board = add_message(new_message, email, board)
-cur.execute("UPDATE TABLE events SET msg_brd = ? WHERE id = ?", (board, event))
+cur.execute("UPDATE events SET msg_brd = ? WHERE id = ?", (board, event))
 
 print "Content-type: text/html"
 print
