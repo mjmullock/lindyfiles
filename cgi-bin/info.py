@@ -73,7 +73,7 @@ if selected_table == "pros":
 	res = retrieve_all_results_from_table(selected_table)
 	table = format_table_results(res)
 elif selected_table == "all_events":
-	res = retrieve_all_results_from_table(selected_table)
+	res = retrieve_all_results_from_table("events")
 	table = show_event_links(res)
 elif selected_table == "nearby_events":
 	table = format_table_results(get_nearby_events(city, state))
