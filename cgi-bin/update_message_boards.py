@@ -71,6 +71,7 @@ except:
 
 board = add_message(new_message, email, board)
 cur.execute("UPDATE events SET msg_brd = ? WHERE id = ?", (board, event))
+cur.commit()
 
 print "Content-type: text/html"
 print
