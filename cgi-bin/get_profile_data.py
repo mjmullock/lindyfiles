@@ -20,6 +20,18 @@ def main():
 	ck_string = os.environ.get('HTTP_COOKIE')
 	if not ck_string:
 		do_err("User not logged in.")
+		
+	try:
+		form = cgi.FieldStorage()
+		email = form['email'].value
+		cur.execute("SELECT username, fname, email, picture, leader, follower FROM users WHERE email = ?", (email,))
+		result = cur.fetchone()
+		print "Content-type: text/html"
+		print
+		for field in result:
+			print str(field) + '\t'
+	except IndexError:
+		pass
 
 	try:
 		ck = Cookie.SimpleCookie(ck_string)

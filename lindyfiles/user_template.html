@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<!-- Allow users to view another registered user's profile. -->
+
+<html>
+
+<head>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		//var query_string = document.URL.split('?').pop().split('&');
+		//var email_queried = query_string[0].split('=')[1];
+		
+		$("#query_user_profile").click(function() {
+			$.ajax(
+			{
+				url: "../cgi-bin/get_profile_data.py",
+				type: "POST",
+				data: {
+					email: $("#user_email").val()
+				},
+				dataType: "text",
+				success: function(dat) {
+					console.log("User details found successfully.");
+					console.log(dat);
+					var data_array = dat.split("\t");
+					console.log(data_array);
+					$("#username").html(data_array[0]);
+					$("#fname").html(data_array[1]);
+					$("#email").html(data_array[2]);
+					$("#picture").html(data_array[3]);
+					$("#leader").html(data_array[4]);
+					$("#follower").html(data_array[5]);
+			}
+		}
+		);
+		});
+	});
+</head>
+
+<body>
+	<a href="../cgi-bin/home.py"> Home </a>
+	<a href="../lindyfiles/profile.html"> Profile </a>
+	<a href="../lindyfiles/query_screen.html"> View Information </a>
+	
+	Enter user's email:
+	<input id='user_email' type='text'>
+	<button id='query_user_profile'> Get profile </button>
+	
+	Username: <div id='username'></div>
+	Name: <div id='fname'></div>
+	Email: <div id='email'></div>
+	Picture: <div id='picture'></div>
+	Leader: <div id='leader'></div>
+	Follower: <div id='follower'></div>
+	
+</body>
+
+</html>
