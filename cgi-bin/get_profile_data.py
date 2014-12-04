@@ -9,6 +9,7 @@ import Cookie
 def do_err(s):
 	print "Content-type: text/html"
 	print
+	print "ERROR:",
 	print s
 	exit(1)
 
