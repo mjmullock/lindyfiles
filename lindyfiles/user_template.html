@@ -27,6 +27,7 @@
 					var data_array = dat.split("\t");
 					console.log(data_array);
 					if (data_array.length > 1) {
+						$("#error_point").html("");
 						$("#username").html(data_array[0]);
 						$("#fname").html(data_array[1]);
 						$("#email").html(data_array[2]);
@@ -36,9 +37,17 @@
 					}
 					else {
 						$("#error_point").html(data_array[0]);
+						var fields = [
+							'#username', '#fname', '#email',
+							'#picture', '#leader', '#follower'
+						]
+						var i;
+						for (i = 0; i < fields.length; i++) {
+							$(fields[i]).html("");
+						}
 					}
+				}
 			}
-		}
 		);
 		});
 	});
