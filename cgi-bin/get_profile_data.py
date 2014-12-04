@@ -34,7 +34,7 @@ def main():
 		for field in result:
 			print str(field) + '\t'
 		exit(0)
-	except IndexError:
+	except KeyError:
 		pass
 
 	try:
