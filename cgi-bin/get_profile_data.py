@@ -26,6 +26,8 @@ def main():
 		email = form['email'].value
 		cur.execute("SELECT username, fname, email, picture, leader, follower FROM users WHERE email = ?", (email,))
 		result = cur.fetchone()
+		if result is None:
+			do_err("Email does not belong to any user.")
 		print "Content-type: text/html"
 		print
 		for field in result:

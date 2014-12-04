@@ -26,12 +26,17 @@
 					console.log(dat);
 					var data_array = dat.split("\t");
 					console.log(data_array);
-					$("#username").html(data_array[0]);
-					$("#fname").html(data_array[1]);
-					$("#email").html(data_array[2]);
-					$("#picture").html(data_array[3]);
-					$("#leader").html(data_array[4]);
-					$("#follower").html(data_array[5]);
+					if (data_array.length == 6) {
+						$("#username").html(data_array[0]);
+						$("#fname").html(data_array[1]);
+						$("#email").html(data_array[2]);
+						$("#picture").html(data_array[3]);
+						$("#leader").html(data_array[4]);
+						$("#follower").html(data_array[5]);
+					};
+					else {
+						$("#error_point").html(data_array[0]);
+					};
 			}
 		}
 		);
@@ -48,6 +53,8 @@
 	<p><p> Enter user's email:
 	<input id='user_email' type='text'> <p>
 	<button id='query_user_profile'> Get profile </button> <p><p>
+		
+	<span id='error_point'></span>
 	
 	Username: <span id='username'></span> <br>
 	Name: <span id='fname'></span> <br>
