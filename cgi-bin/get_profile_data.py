@@ -30,6 +30,7 @@ def main():
 		print
 		for field in result:
 			print str(field) + '\t'
+		exit(0)
 	except IndexError:
 		pass
 
