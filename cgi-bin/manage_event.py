@@ -27,7 +27,7 @@ def main():
 		
 	sessid = cookie["sessid"].value
 	cur.execute("select email from users where sessid=?", (sessid,))
-	email = cur.fetchone()
+	email = cur.fetchone()[0]
 	res += str(email)
 	if attendees_implemented:
 		cur.execute("update events set attendees=? where id=?", (res, eventID))
