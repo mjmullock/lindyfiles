@@ -26,7 +26,7 @@
 					console.log(dat);
 					var data_array = dat.split("\t");
 					console.log(data_array);
-					if (data_array.length == 6) {
+					if (data_array.length > 1) {
 						$("#username").html(data_array[0]);
 						$("#fname").html(data_array[1]);
 						$("#email").html(data_array[2]);
